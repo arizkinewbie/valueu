@@ -1,0 +1,72 @@
+body {
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: 12px;
+}
+.data-prodi td {
+  font-size: 10px;
+  border-top-style: solid;
+  border-top-width: 0.5pt;
+  border-bottom-style: solid;
+  border-bottom-width: 0.5pt;
+  padding-top: 3pt;
+  padding-bottom: 3pt;
+  text-indent: 0;
+  text-align: center;
+}
+
+.data-prodi td.no {
+  width: 34pt;
+  border-left-style: solid;
+  border-left-width: 0.5pt;
+}
+
+.data-prodi td.prodi {
+  width: 80pt;
+}
+
+.data-prodi td.jenjang {
+  width: 40pt;
+}
+
+.data-prodi td.semawal {
+  width: 49pt;
+}
+
+.data-prodi td.jumlah-mhs {
+  width: 39pt;
+}
+
+.data-prodi td.jumlah-dosen {
+  width: 39pt;
+}
+
+.data-prodi td.rasio {
+  width: 36pt;
+}
+
+.data-prodi td.aps-sd {
+  width: 66pt;
+}
+
+.data-prodi td.peringkat {
+  width: 56pt;
+}
+
+.data-prodi td.lap-akhir {
+  width: 56pt;
+  border-right-style: solid;
+  border-right-width: 0.5pt;
+}
+
+.telaah {
+  font-size: 12px;
+  border: 1pt solid;
+  padding: 5px;
+  text-align: justify;
+}
+
+footer {
+  font-size: 10px;
+  padding-top: 5pt; 
+  text-align: right;
+}
