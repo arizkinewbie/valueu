@@ -4,8 +4,7 @@
 #local File
 .hintrc
 .vscode
-.env
-sirejak_db.sql
+#.env
 
 # Windows image file caches
 Thumbs.db
