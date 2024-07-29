@@ -186,7 +186,7 @@ $user = $_SESSION['user'];
 									</div>
 									<div class="card-content mt-3">
 									<p><?=strtoupper($user['nama'])?></p>
-									<p><small>Email: <?=$user['email']?></small></p>
+									<p><b><?=$user['username']?></b></p>
 									</div>
 								</li>
 								<li>
