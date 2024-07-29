@@ -17,6 +17,12 @@
 					</div>
 				</div>
 				<div class="row mb-3">
+					<label class="col-sm-3 col-md-2 col-lg-3 col-xl-2 col-form-label">Email</label>
+					<div class="col-sm-8 form-inline">
+						<span><?=$user['email']?></span>
+					</div>
+				</div>
+				<div class="row mb-3">
 					<label class="col-sm-3 col-md-2 col-lg-3 col-xl-2 col-form-label">Password Lama</label>
 					<div class="col-sm-8 form-inline">
 						<input class="form-control" type="password" name="password_old" required="required"/>
