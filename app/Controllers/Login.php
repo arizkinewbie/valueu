@@ -38,6 +38,7 @@ class Login extends \App\Controllers\BaseController
 
 		csrf_settoken();
 		$this->data['style'] = ' style="max-width:375px"';
+		$this->data['desc'] = 'Sistem Pengesahan Dokumen';
 		return view('themes/modern/builtin/login', $this->data);
 	}
 

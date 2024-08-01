@@ -7,7 +7,7 @@
 	</div>
 	
 	<?php if (!empty($desc)) {
-		echo '<p>' . $desc . '</p>';
+		echo '<p title="created by Arizki Putra Rahman">' . $desc . '</p>';
 	}?>
 </div>
 <div class="card-body">

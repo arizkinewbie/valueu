@@ -56,7 +56,7 @@ small.alert{
     bottom: 0;
 }
 .background {
-	background: url('../../../images/bg_login.png');
+	background: url('../../../images/bg_login.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -84,7 +84,7 @@ small.alert{
     padding: 0;
     margin: 0;
     padding: 25px;
-    padding-bottom: 20px;
+    padding-bottom: 0.5px;
     background: #FFFFFF;
 }
 .card-header.transparent-header img {
