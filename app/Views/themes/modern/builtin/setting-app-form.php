@@ -111,7 +111,7 @@
 						<div class="upload-file-thumb"><span class="file-prop"></span></div>
 					</div>
 				</div>
-				<div class="row mb-3">
+				<div class="row mb-3" hidden>
 					<label class="col-sm-3 col-md-2 col-lg-3 col-xl-2 col-form-label">Background Logo</label>
 					<div class="col-sm-5">
 						Ubah di menu setting tampilan
