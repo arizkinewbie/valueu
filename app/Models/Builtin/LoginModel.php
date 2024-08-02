@@ -14,10 +14,9 @@ class LoginModel extends \App\Models\BaseModel
 								)
 							->getRow();
 
-		$data = array('id_user' => $data_user->id_user
-					, 'id_activity' => 1
-					, 'time' => date('Y-m-d H:i:s')
-				);
+		$data = array(
+			'id_user' => $data_user->id_user, 'id_activity' => 1, 'ip' => $this->request->getIPAddress(), 'agent' => $this->request->getUserAgent(), 'time' => date('Y-m-d H:i:s')
+		);
 		
 		$this->db->table('user_login_activity')->insert($data);
 	}
