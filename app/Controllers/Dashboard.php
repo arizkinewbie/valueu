@@ -22,10 +22,8 @@ class Dashboard extends BaseController
 
 	public function index()
 	{
-		$TokenData = $this->model->getAllToken();
-
 		$this->data['site_title'] = 'Dashboard';
-
+		$TokenData = $this->model->getAllToken();
 		$this->data['jml_allToken'] = $TokenData['all'];
 		$this->data['jml_aktifToken'] = $TokenData['active'];
 		$this->data['jml_nonaktifToken'] = $TokenData['inactive'];

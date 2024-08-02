@@ -13,7 +13,7 @@ helper(['html', 'format']);
 								<p class="card-text">Total Token</p>
 							</div>
 							<div class="icon bg-warning-light">
-								<i class="fas fa-graduation-cap"></i>
+								<i class="fas fa-database"></i>
 							</div>
 						</div>
 					</div>
@@ -26,7 +26,7 @@ helper(['html', 'format']);
 								<p class="card-text">Token Terdaftar</p>
 							</div>
 							<div class="icon">
-								<i class="fas fa-book-open-reader"></i>
+								<i class="fas fa-circle-check"></i>
 							</div>
 						</div>
 					</div>
@@ -39,7 +39,7 @@ helper(['html', 'format']);
 								<p class="card-text">Token Diblokir</p>
 							</div>
 							<div class="icon">
-								<i class="fas fa-solid fa-house"></i>
+								<i class="fas fa-circle-xmark"></i>
 							</div>
 						</div>
 					</div>
@@ -90,7 +90,7 @@ helper(['html', 'format']);
 						<td width="5%">' . $no . '</td>
 						<td width="20%">' . format_tanggal($val['time']) . '</td>
 						<td width="15%">' . $val['ip'] . '</td>
-						<td class="text-truncate" style="max-width: 250px;">' . $val['agent'] . '</td>
+						<td class="text-truncate" style="max-width: 250px;" title="' . $val['agent'] . '">' . $val['agent'] . '</td>
 						<td>' . $val['nama'] . '</td>
 					</tr>';
 					}
