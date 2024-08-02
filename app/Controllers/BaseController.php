@@ -92,8 +92,8 @@ class BaseController extends \CodeIgniter\Controller
 		$this->data['request'] = $this->request;
 		$this->data['isloggedin'] = $this->isLoggedIn;
 		$this->data['session'] = $this->session;
-		$this->data['site_title'] = 'Admin Template Codeigniter 4';
-		$this->data['site_desc'] = 'Admin Template Codeigniter 4 lengkap dengan berbagai fitur untuk memudahkan pengembangan aplikasi';
+		$this->data['site_title'] = 'ValUEU';
+		$this->data['site_desc'] = 'Sistem Pengesahan Dokumen dengan menggunakan QR Code dan JSON Web Token';
 		$this->data['settingAplikasi'] = $this->model->getSettingAplikasi();
 		$this->data['user'] = [];
 		$this->data['auth'] = $this->auth;
