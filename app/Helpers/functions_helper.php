@@ -18,6 +18,16 @@ if (!function_exists('breadcrumb')) {
 	}
 }
 
+function encrypt($passphrase, $text)
+{
+    return \App\Libraries\MySecurity::encrypt($passphrase, $text);
+}
+
+function decrypt($passphrase, $encryptText)
+{
+    return \App\Libraries\MySecurity::decrypt($passphrase, $encryptText);
+}
+
 function format_tanggal_db($date) 
 {
 	if ($date == '0000-00-00' || $date == '')
