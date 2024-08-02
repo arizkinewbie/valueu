@@ -33,6 +33,19 @@ class DashboardModel extends \App\Models\BaseModel
 		return $this->db->query($sql, [$tglInput])->getRowArray();
 	}
 
+	public function getAllToken()
+	{
+		$all = "SELECT COUNT(*) AS jml FROM token";
+		$active = "SELECT COUNT(*) AS jml FROM token WHERE status = 0";
+		$inactive = "SELECT COUNT(*) AS jml FROM token WHERE status = 1";
+		$data = [
+			'all' => $this->db->query($all)->getRowArray()['jml'],
+			'active' => $this->db->query($active)->getRowArray()['jml'],
+			'inactive' => $this->db->query($inactive)->getRowArray()['jml'],
+		];
+		return $data;
+	}
+
 	public function getLatestLoginLogin()
 	{
 		$sql = "
@@ -43,5 +56,12 @@ class DashboardModel extends \App\Models\BaseModel
 			LIMIT 10
 		";
 		return $this->db->query($sql)->getResultArray();
+	}
+
+	public function getJmlUser()
+	{
+		$sql = "SELECT COUNT(id_user) AS jml FROM user";
+		$row = $this->db->query($sql)->getRowArray();
+		return $row['jml'];
 	}
 }

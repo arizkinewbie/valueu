@@ -7,6 +7,7 @@ use App\Models\DateModel;
 
 class Dashboard extends BaseController
 {
+	protected $model;
 	public function __construct()
 	{
 		parent::__construct();
@@ -21,31 +22,16 @@ class Dashboard extends BaseController
 
 	public function index()
 	{
-		// Memanggil model untuk mendapatkan data
-		$this->data['tglInput'] = $this->modelDate->getTglInput('perguruan');
-
-		// Tambahkan ini untuk mengambil nilai default dari model
-		$defaultDate = $this->modelDate->getLatestTglInput();
-
-		// Tambahkan parameter "date" ke URL jika belum ada
-		if (empty($this->request->getGet('date'))) {
-			$url = current_url() . '?date=' . urlencode($defaultDate);
-			return redirect()->to($url);
-		}
-
-		$selectedDate = $this->request->getGet('date');
-		$ptData = $this->model->getPTByDate($selectedDate);
-		$prodiData = $this->model->getProdiByDate($selectedDate);
-		$yayasanData = $this->model->getYayasanByDate($selectedDate);
-		$jmlmhsData = $this->model->getJmlMhsByDate($selectedDate);
+		$TokenData = $this->model->getAllToken();
 
 		$this->data['site_title'] = 'Dashboard';
 
-		$this->data['jml_pt'] = $ptData['jml'];
-		$this->data['jml_prodi'] = $prodiData['jml'];
-		$this->data['jml_yayasan'] = $yayasanData['jml'];
-		$this->data['jml_mhs'] = $jmlmhsData['jml'];
+		$this->data['jml_allToken'] = $TokenData['all'];
+		$this->data['jml_aktifToken'] = $TokenData['active'];
+		$this->data['jml_nonaktifToken'] = $TokenData['inactive'];
+		$this->data['jml_user'] = $this->model->getJmlUser();
 		$this->data['latest_login'] = $this->model->getLatestLoginLogin();
+		// dd($this->data);
 		// Menampilkan view
 		$this->view('dashboard', $this->data);
 	}
