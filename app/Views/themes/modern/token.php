@@ -22,6 +22,7 @@
 							<th>Status</th>
 							<th>Pembuat</th>
 							<th>Tanggal Pembuatan</th>
+							<th>Tanggal Berlaku</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -32,12 +33,14 @@
 						} else {
 							$status = '<span class="badge rounded-pill bg-success"> Aktif</span>';
 						}
+						$expired = $val['expired'] ? format_tanggal($val['expired']) : 'Tidak ada';
 						echo '<tr>
 						<td class="text-center">' . $key . '</td>
 						<td class="text-truncate" style="max-width: 450px;" title="' . $val['token'] . '">' . $val['token'] . '</td>
 						<td class="text-center"> ' . $status . '</td>
 						<td>' . $val['creator'] . '</td>
 						<td>' . format_tanggal($val['ctime']) . '</td>
+						<td>' . $expired . '</td>
 					</tr>';
 					}
 				}
