@@ -16,7 +16,6 @@ class Token extends \App\Controllers\BaseController
 
 		parent::__construct();
 
-		$this->model = new PtTablesModel;
 		$this->modelDate = new DateModel;
 		$this->tokenModel = new TokenModel;
 		$this->table = 'perguruan';
@@ -30,6 +29,7 @@ class Token extends \App\Controllers\BaseController
 		$this->addJs($this->config->baseURL . 'public/vendors/datatables/extensions/Buttons/js/buttons.print.min.js');
 		$this->addStyle($this->config->baseURL . 'public/vendors/datatables/extensions/Buttons/css/buttons.bootstrap5.min.css');
 		$this->addJs($this->config->baseURL . 'public/themes/modern/js/data-tables-token.js');
+		$this->addJs ( $this->config->baseURL . 'public/themes/modern/js/token.js');
 	}
 
 	public function index()
@@ -40,59 +40,26 @@ class Token extends \App\Controllers\BaseController
 		$this->view('token.php', $data);
 	}
 
-	public function edit()
+	public function block_token()
 	{
-		$this->hasPermissionPrefix('update', 'perguruan');
-
-		$this->data['title'] = 'Edit ' . $this->currentModule['judul_module'];;
+		$this->hasPermissionPrefix('create', 'token');
 		$data = $this->data;
-
-		if (empty($_GET['id'])) {
-			$this->errorDataNotFound();
-			return;
-		}
-
+		$data['title'] = 'Block Token';
+		$data['breadcrumb']['Block Token'] = '';
 		// Submit
 		$data['msg'] = [];
 		if (isset($_POST['submit'])) {
 			// $form_errors = validate_form();
 			$form_errors = false;
-
 			if ($form_errors) {
 				$data['msg']['status'] = 'error';
 				$data['msg']['content'] = $form_errors;
 			} else {
-
-				// $query = false;
-				$message = $this->model->saveData();
+				$message = $this->tokenModel->blockToken();
 				$data = array_merge($data, $message);
 			}
 		}
-
-		$data['breadcrumb']['Edit'] = '';
-
-		$data_perguruan = $this->model->getPerguruanById($_GET['id']);
-		if (empty($data_perguruan)) {
-			$this->errorDataNotFound();
-			return;
-		}
-		$data = array_merge($data, $data_perguruan);
-		$this->view('upload-form-pt.php', $data);
-	}
-
-	public function delete()
-	{
-		$condition = $this->request->getGet('date');
-		if ($condition == 'all' or empty($condition)) {
-			$this->modelDate->deleteAllData($this->table);
-		} else {
-			$selectedDate = $condition;
-			$this->modelDate->deleteDataByDate($this->table, $selectedDate);
-		}
-		$currentURL = current_url();
-		$urlParts = explode('/', $currentURL);
-		$desiredURL = $urlParts[0] . '//' . $urlParts[2] . '/' . $urlParts[3];
-		return redirect()->to($desiredURL);
+		$this->view('block-token-form.php', $data);
 	}
 
 	public function check()

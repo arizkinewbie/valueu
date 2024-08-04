@@ -12,6 +12,7 @@
 				show_alert($msg);
 			}
 		?>
+			<a href="<?= $module_url ?>/block-token" class="btn btn-success btn-xs mb-3"><i class="fa fa-plus pe-1"></i> Block Token</a>
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-hover" id="data-tables-token" style="width:100%">
 					<thead>
@@ -54,5 +55,4 @@
 	</div>
 </div>
 <script>
-	$(document).ready(function() {});
 </script>
