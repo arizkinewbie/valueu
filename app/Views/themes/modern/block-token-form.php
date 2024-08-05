@@ -1,6 +1,7 @@
 <div class="card">
 	<div class="card-header">
-		<h5 class="card-title"><?= $title ?></h5>
+		<h5 class="card-title"><?= $current_module['judul_module'] ?></h5>
+		<small><?= $title ?></small>
 	</div>
 
 	<div class="card-body">
@@ -9,9 +10,9 @@
 
 		echo btn_link([
 			'attr' => ['class' => 'btn btn-light btn-xs'],
-			'url' => $config->baseURL . $current_module['nama_module'],
+			'url' => $config->baseURL . '/token',
 			'icon' => 'fa fa-arrow-circle-left',
-			'label' => $current_module['judul_module']
+			'label' => 'Token History',
 		]);
 		?>
 		<hr />
