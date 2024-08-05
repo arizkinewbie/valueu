@@ -36,30 +36,9 @@ class Token extends \App\Controllers\BaseController
 	{
 		$data = $this->data;
 		$this->hasPermissionPrefix('read', 'token');
+		$data['title'] = 'Riwayat pengesahan dokumen';
 		$data['result'] = $this->tokenModel->getAllToken();
 		$this->view('token.php', $data);
-	}
-
-	public function block_token()
-	{
-		$this->hasPermissionPrefix('create', 'token');
-		$data = $this->data;
-		$data['title'] = 'Block Token';
-		$data['breadcrumb']['Block Token'] = '';
-		// Submit
-		$data['msg'] = [];
-		if (isset($_POST['submit'])) {
-			// $form_errors = validate_form();
-			$form_errors = false;
-			if ($form_errors) {
-				$data['msg']['status'] = 'error';
-				$data['msg']['content'] = $form_errors;
-			} else {
-				$message = $this->tokenModel->blockToken();
-				$data = array_merge($data, $message);
-			}
-		}
-		$this->view('block-token-form.php', $data);
 	}
 
 	public function check()
