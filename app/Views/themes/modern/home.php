@@ -1,6 +1,5 @@
 <?php
 helper(['html', 'format']);
-// $jml_pt = $jml_prodi = $jml_yayasan = $jml_mhs = 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,33 +9,28 @@ helper(['html', 'format']);
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<!-- Primary Meta Tags -->
-	<title>Sistem Rekam Jejak Perguruan Tinggi | SiReJak</title>
-	<meta name="title" content="Sistem Rekam Jejak Perguruan Tinggi | SiReJak" />
-	<meta name="description" content="Kenalin, SiReJak. Satu data dari Si EL untuk Jakarta. Dibuat oleh Tim MSIB Batch 5 Lembaga Layanan Pendidikan Tinggi Wilayah III" />
+	<title><?= $site_desc ?> | <?= $site_title ?></title>
+	<meta name="title" content="<?= $site_title ?>" />
+	<meta name="description" content="<?= $site_desc ?>" />
 	<meta name="image" content="<?= $config->baseURL ?>public/images/favicon.png" />
-	<meta name="keyword" content="sirejak, rekam jejak, perguruan tinggi, kampus merdeka, merdeka belajar, lldikti 3, kemendikbudristek">
+	<meta name="keyword" content="<?= $site_title ?>, rekam jejak, perguruan tinggi, kampus merdeka, merdeka belajar, lldikti 3, kemendikbudristek">
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content="https://sirejak.arizkinewbie.com/" />
-	<meta property="og:title" content="Sistem Rekam Jejak Perguruan Tinggi | SiReJak" />
-	<meta property="og:description" content="Kenalin, SiReJak. Satu data dari Si EL untuk Jakarta. Dibuat oleh Tim MSIB Batch 5 Lembaga Layanan Pendidikan Tinggi Wilayah III" />
+	<meta property="og:url" content="<?= $config->baseURL ?>" />
+	<meta property="og:title" content="<?= $site_title ?>" />
+	<meta property="og:description" content="<?= $site_desc ?>" />
 	<meta property="og:image" content="<?= $config->baseURL ?>public/images/favicon.png" />
-
 	<!-- Twitter -->
 	<meta property="twitter:card" content="summary_large_image" />
-	<meta property="twitter:url" content="https://sirejak.arizkinewbie.com/" />
-	<meta property="twitter:title" content="Sistem Rekam Jejak Perguruan Tinggi | SiReJak" />
-	<meta property="twitter:description" content="Kenalin, SiReJak. Satu data dari Si EL untuk Jakarta. Dibuat oleh Tim MSIB Batch 5 Lembaga Layanan Pendidikan Tinggi Wilayah III" />
+	<meta property="twitter:url" content="<?= $config->baseURL ?>" />
+	<meta property="twitter:title" content="<?= $site_title ?>" />
+	<meta property="twitter:description" content="<?= $site_desc ?>" />
 	<meta property="twitter:image" content="<?= $config->baseURL ?>public/images/favicon.png" />
 	<link rel="shortcut icon" href="<?= $config->baseURL ?>public/images/favicon.png" />
 	<!--  -->
 	<link rel="stylesheet" type="text/css" href="<?= $config->baseURL . 'public/vendors/fontawesome/css/all.css' ?>" />
 	<link rel="stylesheet" type="text/css" href="<?= $config->baseURL . 'public/vendors/bootstrap/css/bootstrap.min.css?r=' . time() ?>" />
 	<link rel="stylesheet" type="text/css" href="<?= $config->baseURL . 'public/vendors/bootstrap-icons/bootstrap-icons.css?r=' . time() ?>" />
-	<!-- $this->addJs($this->config->baseURL . 'public/vendors/chartjs/chart.js');
-		$this->addStyle($this->config->baseURL . 'public/vendors/material-icons/css.css');
-		$this->addStyle($this->config->baseURL . 'public/themes/modern/css/dashboard.css');
-		$this->addJs($this->config->baseURL . 'public/themes/modern/js/dashboard.js'); -->
 	<link rel="stylesheet" type="text/css" href="<?= $config->baseURL ?>public/vendors/material-icons/css.css" />
 	<link rel="stylesheet" type="text/css" href="<?= $config->baseURL ?>public/themes/modern/css/dashboard.css" />
 	<link rel="stylesheet" type="text/css" href="<?= $config->baseURL ?>public/home/css/index.css" />
@@ -57,7 +51,7 @@ helper(['html', 'format']);
 			<div class="header__container">
 				<!-- Logo -->
 				<a href="#">
-					<img src="<?= $config->baseURL . 'public/images/' . $settingAplikasi['logo_app'] ?>" alt="SiReJak logo" class="header__logo" />
+					<img src="<?= $config->baseURL . 'public/images/' . $settingAplikasi['logo_app'] ?>" alt="<?= $site_title ?> logo" class="header__logo" />
 				</a>
 
 				<!-- Header links -->
@@ -68,14 +62,10 @@ helper(['html', 'format']);
 						<li><a href="#objectives" class="header__link">FAQ</a></li>
 						<li><a href="#footer" class="header__link">Kontak</a></li>
 						<li><a href="<?= $config->baseURL ?>dashboard" class="header__link">Dashboard</a></li>
-
 					</ul>
 				</div>
 				<a href="<?= $config->baseURL ?>dashboard" class="header__play-store button button--secondary">Admin Dashboard</a>
-
 				<!-- Header cta -->
-
-
 			</div>
 		</nav>
 	</header>
@@ -87,34 +77,21 @@ helper(['html', 'format']);
 			<div class="container hero__container">
 				<div class="hero__copy">
 					<div class="hero__text">
-						<h1>Sistem Rekam Jejak Perguruan Tinggi</h1>
-						<p>Satu data dari Si EL untuk Jakarta.</p>
+						<h1>Sistem Pengesahan Dokumen</h1>
+						<p>menjamin keamanan dan validasi data dokumen</p>
 					</div>
 					<div class="card-body">
 						<div class="card-body dashboard">
 							<div class="row">
 								<div class="col-lg-6 col-sm-6 col-xs-12 mb-4">
-									<div class="card text-bg-primary shadow">
-										<div class="card-body card-stats">
-											<div class="description">
-												<h3 class="card-title"><?= format_ribuan($jml_pt) ?></h3>
-												<p class="card-text">Perguruan Tinggi</p>
-											</div>
-											<div class="icon bg-warning-light">
-												<i class="fas fa-graduation-cap"></i>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-6 col-sm-6 col-xs-12 mb-4">
 									<div class="card text-white bg-success shadow">
 										<div class="card-body card-stats">
 											<div class="description">
-												<h3 class="card-title"><?= format_ribuan($jml_prodi) ?></h3>
-												<p class="card-text">Program Studi</p>
+												<h3 class="card-title"><?= format_ribuan($jml_aktifToken) ?></h3>
+												<p class="card-text">Dokumen Terdaftar</p>
 											</div>
 											<div class="icon">
-												<i class="fas fa-book-open-reader"></i>
+												<i class="fas fa-circle-check"></i>
 											</div>
 										</div>
 									</div>
@@ -123,11 +100,24 @@ helper(['html', 'format']);
 									<div class="card text-white bg-danger shadow">
 										<div class="card-body card-stats">
 											<div class="description">
-												<h3 class="card-title"><?= format_ribuan($jml_yayasan) ?></h3>
-												<p class="card-text">Yayasan</p>
+												<h3 class="card-title"><?= format_ribuan($jml_nonaktifToken) ?></h3>
+												<p class="card-text">Token Diblokir</p>
 											</div>
 											<div class="icon">
-												<i class="fas fa-solid fa-house"></i>
+												<i class="fas fa-circle-xmark"></i>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6 col-sm-6 col-xs-12 mb-4">
+									<div class="card text-bg-primary shadow">
+										<div class="card-body card-stats">
+											<div class="description">
+												<h3 class="card-title"><?= format_ribuan($jml_allToken) ?></h3>
+												<p class="card-text">Total Dokumen</p>
+											</div>
+											<div class="icon bg-warning-light">
+												<i class="fas fa-database"></i>
 											</div>
 										</div>
 									</div>
@@ -136,8 +126,8 @@ helper(['html', 'format']);
 									<div class="card text-white bg-secondary shadow">
 										<div class="card-body card-stats">
 											<div class="description">
-												<h3 class="card-title"><?= format_ribuan($jml_mhs) ?></h3>
-												<p class="card-text">Mahasiswa</p>
+												<h3 class="card-title"><?= format_ribuan($jml_user) ?></h3>
+												<p class="card-text">Pengguna</p>
 											</div>
 											<div class="icon">
 												<i class="fas fa-solid fa-users"></i>
@@ -163,8 +153,8 @@ helper(['html', 'format']);
 								<button type="submit" name="submit" value="submit" class="btn btn-primary">Telusuri</button>
 							</div>
 						</div>
-					</form> -->
-					<a href="#" class="btn btn-primary" id="submit">Telusuri</a>
+					</form>
+					<a href="#" class="btn btn-primary" id="submit">Telusuri</a> -->
 					<script>
 						document.getElementById('kirim').addEventListener('click', function(e) {
 							e.preventDefault();
@@ -188,12 +178,12 @@ helper(['html', 'format']);
 			<div id="about" class="container advantages__container">
 				<div class="advantages__copy">
 					<h2>
-						Kenalin, SiReJak.
+						Kenalin, <?= $site_title ?>.
 						<span>Data Perguruan Tinggi Wilayah yang akurat</span>
 						<span>Pertama di Indonesia.</span>
 					</h2>
 					<p>
-						SiReJak adalah Sistem untuk mengelola Rekam Jejak Perguruan Tinggi yang terintegrasi dengan data yang bersumber dari <a href="https://pddikti.kemdikbud.go.id/">PDDikti,</a> SiReJak di bawah naungan LLDIKTI Wilayah III. Tujuan utama dari SiReJak adalah menyediakan platform digital yang efisien dan akurat untuk merekam dan mengelola jejak akademis serta administratif perguruan tinggi.
+						<?= $site_title ?> adalah Sistem untuk mengelola Rekam Jejak Perguruan Tinggi yang terintegrasi dengan data yang bersumber dari <a href="https://pddikti.kemdikbud.go.id/">PDDikti,</a> <?= $site_title ?> di bawah naungan LLDIKTI Wilayah III. Tujuan utama dari <?= $site_title ?> adalah menyediakan platform digital yang efisien dan akurat untuk merekam dan mengelola jejak akademis serta administratif perguruan tinggi.
 					</p>
 				</div>
 				<div class="advantages__items">
@@ -201,7 +191,7 @@ helper(['html', 'format']);
 						<img src="<?= $config->baseURL ?>public/home/assets/advantages-kecerdasan-buatan.svg" alt="" />
 						<div>
 							<h3>Inovasi Mengelola Data Perguruan Tinggi</h3>
-							<p>SiReJak bisa membantu analisa data Perguruan Tinggi sesuai kebutuhan.</p>
+							<p><?= $site_title ?> bisa membantu analisa data Perguruan Tinggi sesuai kebutuhan.</p>
 						</div>
 					</article>
 					<article class="advantages__item">
@@ -215,7 +205,7 @@ helper(['html', 'format']);
 						<img src="<?= $config->baseURL ?>public/home/assets/advantages-kualitas-pelayanan.svg" alt="" />
 						<div>
 							<h3>Mengubah pelayanan secara digitalisasi</h3>
-							<p>SiReJak membantu meningkatkan kualitas pelayanan dalam membantu mencari data Perguruan Tinggi.</p>
+							<p><?= $site_title ?> membantu meningkatkan kualitas pelayanan dalam membantu mencari data Perguruan Tinggi.</p>
 						</div>
 					</article>
 				</div>
@@ -245,7 +235,7 @@ helper(['html', 'format']);
 							<!-- Accordion 1 -->
 							<div class="accordion__item">
 								<button type="button" class="accordion__button">
-									<h4 class="accordion__question">Apa Keuntungan Menggunakan SiReJak?</h4>
+									<h4 class="accordion__question">Apa Keuntungan Menggunakan <?= $site_title ?>?</h4>
 									<div class="accordion__icon">
 										<img src="<?= $config->baseURL ?>public/home/assets/icon-expand.svg" alt="Expand icon" />
 									</div>
@@ -253,7 +243,7 @@ helper(['html', 'format']);
 								<div class="accordion__collapse">
 									<div class="accordion__body">
 										<p class="accordion__answer">
-											SiReJak memberikan keuntungan efisiensi administrasi, akurasi data, dan dukungan strategis dalam pengelolaan akademik perguruan tinggi.
+											<?= $site_title ?> memberikan keuntungan efisiensi administrasi, akurasi data, dan dukungan strategis dalam pengelolaan akademik perguruan tinggi.
 										</p>
 									</div>
 								</div>
@@ -279,7 +269,7 @@ helper(['html', 'format']);
 							<!-- Accordion 3 -->
 							<div class="accordion__item">
 								<button type="button" class="accordion__button">
-									<h4 class="accordion__question">Apakah SiReJak Mendukung Penggunaan dari Berbagai Perangkat?</h4>
+									<h4 class="accordion__question">Apakah <?= $site_title ?> Mendukung Penggunaan dari Berbagai Perangkat?</h4>
 									<div class="accordion__icon">
 										<img src="<?= $config->baseURL ?>public/home/assets/icon-expand.svg" alt="Expand icon" />
 									</div>
@@ -287,7 +277,7 @@ helper(['html', 'format']);
 								<div class="accordion__collapse">
 									<div class="accordion__body">
 										<p class="accordion__answer">
-											Ya, SiReJak dirancang responsif dan dapat diakses melalui berbagai perangkat, termasuk komputer, tablet, dan ponsel pintar.
+											Ya, <?= $site_title ?> dirancang responsif dan dapat diakses melalui berbagai perangkat, termasuk komputer, tablet, dan ponsel pintar.
 										</p>
 									</div>
 								</div>
@@ -301,7 +291,7 @@ helper(['html', 'format']);
 		<!-- TEAM -->
 		<section class="team">
 			<div id="team" class="container team__container">
-				<h2>Tim SiRejak</h2>
+				<h2>Tim <?= $site_title ?></h2>
 
 				<div class="team__company">
 					<div class="team__actions">
@@ -371,25 +361,25 @@ helper(['html', 'format']);
 		<section class="cta">
 			<div class="cta__copy-container">
 				<div class="container cta__copy">
-					<h2>Belum punya aplikasi SiReJak? Yuk, unduh sekarang.</h2>
-					<p>Dapatkan yang terbaik dari SiReJak dan nikmati akses ke fitur-fitur terlengkap.</p>
+					<h2>Belum punya aplikasi <?= $site_title ?>? Yuk, unduh sekarang.</h2>
+					<p>Dapatkan yang terbaik dari <?= $site_title ?> dan nikmati akses ke fitur-fitur terlengkap.</p>
 					<a href="#">
 						<img src="<?= $config->baseURL ?>public/home/assets/cta-google-play-color.svg" alt="Get on Google Play icon" />
 					</a>
 				</div>
 			</div>
 			<!-- <div class="cta__app-preview">
-				<img src="<?= $config->baseURL ?>public/home/assets/cta-mobile-app-preview.png" alt="SiReJak mobile app preview" />
+				<img src="<?= $config->baseURL ?>public/home/assets/cta-mobile-app-preview.png" alt="<?= $site_title ?> mobile app preview" />
 			</div> -->
 			<div class="cta__app-preview">
-				<img src="<?= $config->baseURL ?>public/home/assets/mobile.png" alt="SiReJak mobile app preview" />
+				<img src="<?= $config->baseURL ?>public/home/assets/mobile.png" alt="<?= $site_title ?> mobile app preview" />
 			</div>
 		</section>
 
 		<!-- SLOGAN -->
 		<section class="slogan">
 			<div class="container slogan__container">
-				<h3>Bersama <span>#SiReJak</span>, Dari Jakarta Untuk Indonesia!</h3>
+				<h3>Bersama <span>#<?= $site_title ?></span>, Dari Jakarta Untuk Indonesia!</h3>
 			</div>
 		</section>
 	</main>
@@ -398,26 +388,12 @@ helper(['html', 'format']);
 	<footer class="footer">
 		<div id="footer" class="container footer__container">
 			<div class="footer__company">
-				<img src="<?= $config->baseURL . '/public/images/' . $settingAplikasi['logo_app'] ?>" alt="SiReJak logo" class="footer__logo" width="300" />
-				<p class="footer__copyright"><?php
-												echo '© ', date('Y');
-												?>
-					<a href="https://lldikti3.kemdikbud.go.id/v6/" target="_blank" style="font-size: 16px">Lembaga Layanan Pendidikan Tinggi Wilayah III</a>
+				<img src="<?= $config->baseURL ?>public/home/assets/ueu.png" alt="ueu logo" class="footer__logo" width="300" />
+				<p class="footer__copyright mt-3"><?php
+																					echo '© ', date('Y');
+																					?>
+					<a href="https://lldikti3.kemdikbud.go.id/v6/" target="_blank"><?= $site_title ?>, <?= $site_desc ?>.</a>
 				</p>
-				<div class="footer__supporters">
-					<p style="font-size: 16px">Didukung oleh:</p>
-					<ul>
-						<li>
-							<img src="https://www.kemdikbud.go.id/main/files/large/83790f2b43f00be" alt="kemendikbud logo" />
-						</li>
-						<li>
-							<img src="<?= $config->baseURL ?>public/home/assets/logo_lldikti3_putih.png" alt="LLDikti logo" />
-						</li>
-						<li>
-							<img src="https://lldikti10.id/public/img/informasi/berita/MASTER.png" alt="MBKM logo" />
-						</li>
-					</ul>
-				</div>
 			</div>
 
 			<div class="footer__links">
