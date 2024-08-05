@@ -2,6 +2,7 @@
 <div class="card">
 	<div class="card-header">
 		<h5 class="card-title"><?= $current_module['judul_module'] ?></h5>
+		<small><?= $title ?></small>
 	</div>
 	<div class="card-body">
 		<?php
@@ -12,7 +13,8 @@
 				show_alert($msg);
 			}
 		?>
-			<a href="<?= $module_url ?>/block-token" class="btn btn-success btn-xs mb-3"><i class="fa fa-plus pe-1"></i> Block Token</a>
+			<a href="<?= base_url() ?>/add-document" class="btn btn-success btn-xs mb-3">Add Document</a>
+			<a href="<?= base_url() ?>/block-document" class="btn btn-warning btn-xs mb-3">Block Document</a>
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-hover" id="data-tables-token" style="width:100%">
 					<thead>
