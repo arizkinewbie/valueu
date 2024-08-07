@@ -54,7 +54,7 @@ class TokenModel extends \App\Models\BaseModel
             ];
         }
         // check if token exist
-        else if ($this->db->table($this->table)->where('token', $token)->where('status', 0)->where('expired >', date('Y-m-d H:i:s'))->get()->getRowArray()) {
+        else if ($this->db->table($this->table)->where('token', $token)->get()->getRowArray()) {
             $status = 200;
             $msg = 'Data dokumen tersedia';
             $data = $jwt->decode($token);
