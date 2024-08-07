@@ -47,7 +47,7 @@ class Home extends BaseController
 			$dataToken = [
 				'status' => 500,
 				'error' => $e->getMessage(),
-				'message' => 'Terjadi kesalahan, data dokumen tidak tersedia',
+				'message' => 'Terjadi kesalahan! data tidak tersedia',
 				'data' => []
 			];
 		}

@@ -59,7 +59,7 @@ helper(['html', 'format']);
 		<nav class="header__nav">
 			<div class="header__container">
 				<!-- Logo -->
-				<a href="#">
+				<a href="/">
 					<img src="<?= $config->baseURL . 'public/images/' . $settingAplikasi['logo_app'] ?>" alt="<?= $site_title ?> logo" class="header__logo" />
 				</a>
 
@@ -91,7 +91,7 @@ helper(['html', 'format']);
 					</div>
 					<a href="#" class="btn btn-primary" id="scanQrCodeBtn2">Scan QR Code</a>
 					<div id="qrCodeReader" style="display:none;"></div>
-					<div class="alert alert-dismissible fade show alert-success" role="alert" id="check-content" style="display: none;"></div>
+					<div class="alert fade show alert-success" role="alert" id="check-content" style="display: none;"></div>
 					<div class="card-body">
 						<div class="card-body dashboard">
 							<div class="row">
@@ -151,7 +151,7 @@ helper(['html', 'format']);
 						</div>
 					</div>
 				</div>
-				<img class="hero__img" src="<?= $config->baseURL ?>public/home/assets/el.png" alt="si El" />
+				<img class="hero__img" src="<?= $config->baseURL ?>public/home/assets/soang.png" alt="si El" />
 			</div>
 
 		</section>
@@ -162,33 +162,32 @@ helper(['html', 'format']);
 				<div class="advantages__copy">
 					<h2>
 						Kenalin, <?= $site_title ?>.
-						<span>Data Perguruan Tinggi Wilayah yang akurat</span>
-						<span>Pertama di Indonesia.</span>
+						<span>Sistem pengesahan yang mengedepankan<br>keamanan data dokumen.</span>
 					</h2>
 					<p>
-						<?= $site_title ?> adalah Sistem untuk mengelola Rekam Jejak Perguruan Tinggi yang terintegrasi dengan data yang bersumber dari <a href="https://pddikti.kemdikbud.go.id/">PDDikti,</a> <?= $site_title ?> di bawah naungan LLDIKTI Wilayah III. Tujuan utama dari <?= $site_title ?> adalah menyediakan platform digital yang efisien dan akurat untuk merekam dan mengelola jejak akademis serta administratif perguruan tinggi.
+						<?= $site_title ?> adalah Sistem Pengesahan Data Dokumen yang memanfaatkan teknologi terbaru yaitu JSON Web Token. Dijamin keamanan data tidak dapat diubah karena data telah terenkripsi.
 					</p>
 				</div>
 				<div class="advantages__items">
 					<article class="advantages__item">
 						<img src="<?= $config->baseURL ?>public/home/assets/advantages-kecerdasan-buatan.svg" alt="" />
 						<div>
-							<h3>Inovasi Mengelola Data Perguruan Tinggi</h3>
-							<p><?= $site_title ?> bisa membantu analisa data Perguruan Tinggi sesuai kebutuhan.</p>
+							<h3>Inovasi Mengelola Data Dokumen</h3>
+							<p><?= $site_title ?> bisa membantu dalam pengesahan dokumen.</p>
 						</div>
 					</article>
 					<article class="advantages__item">
 						<img src="<?= $config->baseURL ?>public/home/assets/advantages-kesehatan-cepat.svg" alt="" />
 						<div>
-							<h3>Tindakan data sesuai tanggal input PDDikti</span></h3>
-							<p>Temukan data Perguran Tinggi sesuai tanggal input PDDikti dengan cepat.</p>
+							<h3>Teknologi yang efisien dan efektif</span></h3>
+							<p>Dengan token memudahkan dalam proses validasi serta QR Code untuk memudahkan dalam proses dekripsi.</p>
 						</div>
 					</article>
 					<article class="advantages__item">
 						<img src="<?= $config->baseURL ?>public/home/assets/advantages-kualitas-pelayanan.svg" alt="" />
 						<div>
-							<h3>Mengubah pelayanan secara digitalisasi</h3>
-							<p><?= $site_title ?> membantu meningkatkan kualitas pelayanan dalam membantu mencari data Perguruan Tinggi.</p>
+							<h3>Digitalisasi pengesahan dokumen</h3>
+							<p><?= $site_title ?> membantu meningkatkan kualitas pelayanan dalam mendukung digitalisasi di lingkungan Universitas Esa Unggul.</p>
 						</div>
 					</article>
 				</div>
@@ -208,7 +207,7 @@ helper(['html', 'format']);
 						<div>
 							<img src="<?= $config->baseURL ?>public/home/assets/icon-quote-mark.svg" alt="" />
 							<p>
-								Menjadi Sistem Rekam Jejak unggulan yang mendukung keberlanjutan dan peningkatan kualitas perguruan tinggi di wilayah III.
+								Menjadi Sistem yang mendukung keberlanjutan dan peningkatan kualitas pelayanan di lingkungan Universitas Esa Unggul.
 							</p>
 						</div>
 					</article>
@@ -226,7 +225,7 @@ helper(['html', 'format']);
 								<div class="accordion__collapse">
 									<div class="accordion__body">
 										<p class="accordion__answer">
-											<?= $site_title ?> memberikan keuntungan efisiensi administrasi, akurasi data, dan dukungan strategis dalam pengelolaan akademik perguruan tinggi.
+											<?= $site_title ?> memberikan keuntungan efisiensi administrasi, akurasi data, dan dukungan strategis dalam pengelolaan data dokumen.
 										</p>
 									</div>
 								</div>
@@ -235,7 +234,7 @@ helper(['html', 'format']);
 							<!-- Accordion 2 -->
 							<div class="accordion__item">
 								<button type="button" class="accordion__button">
-									<h4 class="accordion__question">Bagaimana Cara Mengakses Catatan Telaah Akademik?</h4>
+									<h4 class="accordion__question">Bagaimana Cara Melakukan Pengesahan Dokumen?</h4>
 									<div class="accordion__icon">
 										<img src="<?= $config->baseURL ?>public/home/assets/icon-expand.svg" alt="Expand icon" />
 									</div>
@@ -243,7 +242,7 @@ helper(['html', 'format']);
 								<div class="accordion__collapse">
 									<div class="accordion__body">
 										<p class="accordion__answer">
-											Pengguna dapat mengakses catatan telaah di atas. Untuk lebih lengkap harus melalui menu yang tersedia setelah login ke dalam sistem.
+											Hanya pengguna (yang memiliki akun) yang dapat melakukan pengesahan dokumen. Dengan cara mengisi form yang diminta oleh <?= $site_title ?>. Kemudian, data akan dienkripsi yang menghasilkan token dan QR Code.
 										</p>
 									</div>
 								</div>
@@ -349,7 +348,7 @@ helper(['html', 'format']);
 		<!-- SLOGAN -->
 		<section class="slogan">
 			<div class="container slogan__container">
-				<h3>Bersama <span>#<?= $site_title ?></span>, Dari Jakarta Untuk Indonesia!</h3>
+				<h3>Bersama <span>#<?= $site_title ?></span>, digitalisasi pengesahan dokumen<br>di lingkungan Universitas Esa Unggul!</h3>
 			</div>
 		</section>
 	</main>

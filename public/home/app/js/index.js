@@ -20,8 +20,18 @@ $(document).ready(function () {
           iss	:	Admin Kampus Bekasi
           iat	:	1723026798
           */
+         let iatFormat = new Date(data.data.iat * 1000);
           dataHTML = `
           <tr>
+            <td class="text-center"><i class="fa-regular fa-circle-check text-success mb-2" style="font-size: 90px; display: block; margin: 0 auto;"></i>${data.message}.</td>
+          </tr>
+          <tr>
+            <td width="700px" class="text-center"><b>Pengesahan Berlaku Hingga</b></td>
+          </tr>
+          <tr>
+            <td class="text-center"><i>${data.data.tgl_berlaku}</i></td>
+          </tr>
+           <tr>
             <td width="700px"><b>Terbit Surat :</b></td>
           </tr>
           <tr>
@@ -45,11 +55,33 @@ $(document).ready(function () {
           <tr>
             <td>${data.data.keterangan}</td>
           </tr>
+          <tr>
+          <tr>
+            <td><b>Pengaju :</b></td>
+          </tr>
+          <tr>
+            <td>${data.data.pengaju}</td>
+          </tr>
+          <tr>
+            <td><b>Disahkan oleh :</b></td>
+          </tr>
+          <tr>
+            <td>${data.data.iss}</td>
+          </tr>
+          <tr>
+            <td><b>Disahkan pada :</b></td>
+          </tr>
+          <tr>
+            <td>${iatFormat}</td>
+          </tr>
           `;
         } else {
-          dataHTML = `<span>Terjadi kesalahan! data tidak tersedia.</span>`;
+          dataHTML = `
+          <tr>
+            <td class="text-center" width="700px"><i class="fa-regular fa-circle-xmark text-danger mb-2" style="font-size: 90px; display: block; margin: 0 auto;"></i>${data.message}.</td>
+          </tr>`;
           $('#check-content').removeClass('alert-success');
-          $('#check-content').addClass('alert-error');
+          $('#check-content').addClass('alert-danger');
         }
         $('#check-content').html(dataHTML).show();
       },
