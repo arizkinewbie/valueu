@@ -67,10 +67,29 @@ $(document).ready(function () {
           dataHTML = `
           <tr>
             <td class="text-center" width="700px"><i class="fa-solid fa-triangle-exclamation text-warning mb-2" style="font-size: 90px; display: block; margin: 0 auto;"></i>${data.message}.</td>
+          </tr>
+          <tr>
+            <td width="700px" class="text-center"><b>Pengesahan Berlaku Hingga</b></td>
+          </tr>
+          <tr>
+            <td class="text-center"><i>${data.data.tgl_berlaku}</i></td>
           </tr>`;
           $('#check-content').removeClass('alert-success');
           $('#check-content').addClass('alert-warning');
-         } else {
+        } else if (data.status == 401) {
+          dataHTML = `
+          <tr>
+            <td class="text-center" width="700px"><i class="fa-solid fa-triangle-exclamation text-warning mb-2" style="font-size: 90px; display: block; margin: 0 auto;"></i>${data.message}.</td>
+          </tr>
+          <tr>
+            <td width="700px" class="text-center"><b>Pengesahan Diblokir Pada</b></td>
+          </tr>
+          <tr>
+            <td class="text-center"><i>${data.data.dtime} WIB</i></td>
+          </tr>`;
+          $('#check-content').removeClass('alert-success');
+          $('#check-content').addClass('alert-warning');
+        } else {
           dataHTML = `
           <tr>
             <td class="text-center" width="700px"><i class="fa-regular fa-circle-xmark text-danger mb-2" style="font-size: 90px; display: block; margin: 0 auto;"></i>${data.message}.</td>

@@ -41,13 +41,17 @@ class TokenModel extends \App\Models\BaseModel
         if ($this->db->table($this->table)->where('token', $token)->where('expired <', date('Y-m-d H:i:s'))->get()->getRowArray()) {
             $status = 400;
             $msg = 'Dokumen sudah kadaluarsa. Silahkan hubungi pihak terkait';
-            $data = [];
+            $data = [
+                'tgl_berlaku' => format_tanggal($this->db->table($this->table)->where('token', $token)->where('expired <', date('Y-m-d H:i:s'))->get()->getRowArray()['expired'])
+            ];
         }
         //check if token status block
         else if ($this->db->table($this->table)->where('token', $token)->where('status', 1)->get()->getRowArray()) {
-            $status = 400;
+            $status = 401;
             $msg = 'Dokumen telah diblokir. Silahkan hubungi pihak terkait';
-            $data = [];
+            $data = [
+                'dtime' => format_tanggal($this->db->table($this->table)->where('token', $token)->where('status', 1)->get()->getRowArray()['dtime'])
+            ];
         }
         // check if token exist
         else if ($this->db->table($this->table)->where('token', $token)->where('status', 0)->where('expired >', date('Y-m-d H:i:s'))->get()->getRowArray()) {
