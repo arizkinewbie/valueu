@@ -61,11 +61,12 @@ class Add_document extends \App\Controllers\BaseController
           'iss' => $user_name,
           'iat' => time(),
         ];
-        dd($dataForm);
         $token = $jwt->encode($dataForm);
         $dataToken = [
           'token' => $token,
           'expired' => $dataForm['tgl_berlaku'],
+          'status' => 0,
+          'ctime' => date('Y-m-d H:i:s'),
           'cuser' => $id,
         ];
         $tokenModel = new TokenModel();
