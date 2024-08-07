@@ -3,19 +3,21 @@
 namespace App\Controllers;
 
 use App\Models\HomeModel;
-use App\Models\DateModel;
+use App\Models\TokenModel;
 use App\Models\DashboardModel;
 
 class Home extends BaseController
 {
 	protected $model;
 	protected $dashboardModel;
+	protected $tokenModel;
 
 	public function __construct()
 	{
 		parent::__construct();
 		$this->model = new HomeModel;
 		$this->dashboardModel = new DashboardModel;
+		$this->tokenModel = new TokenModel;
 	}
 
 	public function index()
@@ -33,16 +35,10 @@ class Home extends BaseController
 
 	public function check()
 	{
-		$jwt = new \App\Libraries\JWT();
-		$data = $this->data;
+		$token = new TokenModel();
 		try {
-			$token = $_GET['token'];
-			$data = $jwt->decode($token);
-			$dataToken = [
-				'status' => 200,
-				'message' => 'Data dokumen tersedia',
-				'data' => $data
-			];
+			$tokenData = $_GET['token'];
+			$dataToken = $token->verifyToken($tokenData);
 		} catch (\Exception $e) {
 			$dataToken = [
 				'status' => 500,

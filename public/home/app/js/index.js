@@ -64,7 +64,14 @@ $(document).ready(function () {
             <td>${iatFormat}</td>
           </tr>
           `;
-        } else {
+        } else if (data.status == 400) {
+          dataHTML = `
+          <tr>
+            <td class="text-center" width="700px"><i class="fa-solid fa-triangle-exclamation text-warning mb-2" style="font-size: 90px; display: block; margin: 0 auto;"></i>${data.message}.</td>
+          </tr>`;
+          $('#check-content').removeClass('alert-success');
+          $('#check-content').addClass('alert-warning');
+         } else {
           dataHTML = `
           <tr>
             <td class="text-center" width="700px"><i class="fa-regular fa-circle-xmark text-danger mb-2" style="font-size: 90px; display: block; margin: 0 auto;"></i>${data.message}.</td>

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Libraries\JWT as JWT;
+
 class TokenModel extends \App\Models\BaseModel
 {
     protected $table = 'token';
@@ -24,13 +26,6 @@ class TokenModel extends \App\Models\BaseModel
 
     public function addToken($data)
     {
-        $data = [
-            'token' => $data['token'],
-            'status' => 0,
-            'expired' => $data['expired'],
-            'ctime' => date('Y-m-d H:i:s'),
-            'cuser' => $data['cuser'],
-        ];
         try {
             $this->db->table($this->table)->insert($data);
         } catch (\Exception $e) {
@@ -41,6 +36,28 @@ class TokenModel extends \App\Models\BaseModel
 
     public function verifyToken($token)
     {
+        $jwt = new JWT();
+        //check if token expired or not
+        if ($this->db->table($this->table)->where('token', $token)->where('expired <', date('Y-m-d H:i:s'))->get()->getRowArray()) {
+            $status = 400;
+            $msg = 'Dokumen sudah kadaluarsa. Silahkan hubungi pihak terkait';
+            $data = [];
+        }
+        //check if token status block
+        else if ($this->db->table($this->table)->where('token', $token)->where('status', 1)->get()->getRowArray()) {
+            $status = 400;
+            $msg = 'Dokumen telah diblokir. Silahkan hubungi pihak terkait';
+            $data = [];
+        } else {
+            $status = 200;
+            $msg = 'Data dokumen tersedia';
+            $data = $jwt->decode($token);
+        }
+        return $data = [
+            'status' => $status,
+            'message' => $msg,
+            'data' => $data
+        ];
     }
 
     public function blockToken()
