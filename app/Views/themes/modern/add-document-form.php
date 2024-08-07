@@ -60,11 +60,11 @@
         <div class="row mb-3" id="form-tgl-berlaku" style="display: none;">
           <label class="col-sm-3 col-md-2 col-lg-3 col-xl-2 col-form-label">Pilih Tanggal <span class="text-danger">*</span></label>
           <div class="col-sm-5">
-            <input class="form-control date-picker" type="text" name="tgl_berlaku" placeholder="Menentukan batas surat dinyatakan sah" value="<?= date('d-m-Y') ?>" />
+            <input class="form-control date-picker" type="text" name="tgl_berlaku" placeholder="Menentukan batas surat dinyatakan sah" value="<?= date('d-m-Y') ?>"/>
             <small>Menentukan batas surat dinyatakan sah</small>
           </div>
         </div>
-        <div class="row mb-3">
+        <div class="row mb-3" hidden>
           <label class="col-sm-3 col-md-2 col-lg-3 col-xl-2 col-form-label">Pihak terkait</label>
           <div class="col-sm-5">
             <?php
@@ -88,7 +88,6 @@
         <div class="row">
           <div class="col-sm-5">
             <button type="submit" name="submit" id="btn-submit" value="submit" class="btn btn-primary">Submit</button>
-            <input type="hidden" name="id" value="<?= @$_GET['id'] ?>" />
           </div>
         </div>
       </div>

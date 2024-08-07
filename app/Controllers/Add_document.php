@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\DocumentModel;
+use App\Models\TokenModel;
 
 class Add_document extends \App\Controllers\BaseController
 {
@@ -13,7 +14,6 @@ class Add_document extends \App\Controllers\BaseController
   {
 
     parent::__construct();
-    // $this->mustLoggedIn();
 
     $this->model = new DocumentModel;
     $this->data['site_title'] = 'Data Dokumen';
@@ -28,56 +28,48 @@ class Add_document extends \App\Controllers\BaseController
     $this->addStyle($this->config->baseURL . 'public/vendors/bootstrap-datepicker/css/bootstrap-datepicker3.css');
   }
 
-  // public function index()
-  // {
-  //   $this->hasPermissionPrefix('read');
-
-  //   $data = $this->data;
-  //   if (!empty($_POST['delete'])) {
-
-  //     $result = $this->model->deleteData();
-
-  //     // $result = true;
-  //     if ($result) {
-  //       $data['msg'] = ['status' => 'ok', 'message' => 'Data akta berhasil dihapus'];
-  //     } else {
-  //       $data['msg'] = ['status' => 'error', 'message' => 'Data akta gagal dihapus'];
-  //     }
-  //   }
-
-  //   $data_akta = $this->model->getData();
-  //   $data['result'] = $data_akta['data_akta'];
-  //   $data['akta_file'] = $data_akta['akta_file'];
-
-  //   if (!$data['result']) {
-  //     $data['msg']['status'] = 'error';
-  //     $data['msg']['content'] = 'Data tidak ditemukan';
-  //   }
-
-  //   $this->view('options-dinamis-result.php', $data);
-  // }
-
   public function index()
   {
     $this->hasPermissionPrefix('create');
-
     $data = $this->data;
     $data['title'] = 'Pengesahan Dokumen';
-
-    // Submit
     $data['msg'] = [];
+    $data_options = $this->setDataOptions();
+    $data = array_merge($data, $data_options);
+    //when submit
     if (isset($_POST['submit'])) {
       // $form_errors = validate_form();
       $form_errors = false;
-
       if ($form_errors) {
         $data['msg']['status'] = 'error';
         $data['msg']['content'] = $form_errors;
       } else {
-
         // $query = false;
-        $isSave = $this->model->saveData();
-
+        //SAVE
+        $jwt = new \App\Libraries\JWT();
+        $user_name = $_SESSION['user']['nama'];
+        $id = $_SESSION['user']['id_user'];
+        $tglTerbit = date('Y-m-d', strtotime($_POST['tgl_terbit']));
+        $tglBerlaku = !empty($_POST['tgl_berlaku']) ? date('Y-m-d', strtotime($_POST['tgl_berlaku'])) : null;
+        $dataForm = [
+          'tgl_terbit' => format_tanggal($tglTerbit),
+          'nomor' => $_POST['nomor'],
+          'hal' => $_POST['hal'],
+          'pengaju' => $_POST['pengaju'],
+          'tgl_berlaku' => $tglBerlaku ? format_tanggal($tglBerlaku) : null,
+          'keterangan' => $_POST['keterangan'],
+          'iss' => $user_name,
+          'iat' => time(),
+        ];
+        dd($dataForm);
+        $token = $jwt->encode($dataForm);
+        $dataToken = [
+          'token' => $token,
+          'expired' => $dataForm['tgl_berlaku'],
+          'cuser' => $id,
+        ];
+        $tokenModel = new TokenModel();
+        $isSave = $tokenModel->addToken($dataToken);
         if ($isSave) {
           $data['msg']['status'] = 'ok';
           $data['msg']['content'] = 'Data berhasil disimpan';
@@ -87,9 +79,6 @@ class Add_document extends \App\Controllers\BaseController
         }
       }
     }
-    $data_options = $this->setDataOptions();
-    $data = array_merge($data, $data_options);
-
     $this->view('add-document-form.php', $data);
   }
 
