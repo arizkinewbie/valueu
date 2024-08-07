@@ -61,11 +61,9 @@ $(document).ready(function () {
 });
 
 //QRCode Reader
-document.getElementById('scanQrCodeBtn').addEventListener('click', function () {
+$('#scanQrCodeBtn, #scanQrCodeBtn2').on('click', function () {
   var qrCodeReaderDiv = document.getElementById('qrCodeReader');
   qrCodeReaderDiv.style.display = 'block';
-  console.log("masuk qrcode");
-
   const html5QrCode = new Html5Qrcode("qrCodeReader");
   const qrCodeSuccessCallback = (decodedText, decodedResult) => {
     console.log(`QR Code decoded: ${decodedText}`);

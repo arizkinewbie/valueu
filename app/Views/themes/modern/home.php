@@ -13,7 +13,7 @@ helper(['html', 'format']);
 	<meta name="title" content="<?= $site_title ?>" />
 	<meta name="description" content="<?= $site_desc ?>" />
 	<meta name="image" content="<?= $config->baseURL ?>public/images/favicon.png" />
-	<meta name="keyword" content="<?= $site_title ?>, rekam jejak, perguruan tinggi, kampus merdeka, merdeka belajar, lldikti 3, kemendikbudristek">
+	<meta name="keyword" content="pengesahan, jwtoken, qrcode, sistem, universitas esa unggul">
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="<?= $config->baseURL ?>" />
@@ -70,7 +70,7 @@ helper(['html', 'format']);
 						<li><a href="#about" class="header__link">Tentang</a></li>
 						<li><a href="#objectives" class="header__link">FAQ</a></li>
 						<li><a href="#footer" class="header__link">Kontak</a></li>
-						<li><a>	</a></li>
+						<li><a> </a></li>
 					</ul>
 				</div>
 				<button id="scanQrCodeBtn" class="header__play-store button button--secondary">Scan QR Code</button>
@@ -89,6 +89,7 @@ helper(['html', 'format']);
 						<h1>Sistem Pengesahan Dokumen</h1>
 						<p>menjamin keamanan dan validasi data dokumen</p>
 					</div>
+					<a href="#" class="btn btn-primary" id="scanQrCodeBtn2">Scan QR Code</a>
 					<div id="qrCodeReader" style="display:none;"></div>
 					<div class="alert alert-dismissible fade show alert-success" role="alert" id="check-content" style="display: none;"></div>
 					<div class="card-body">
@@ -149,7 +150,6 @@ helper(['html', 'format']);
 							</div>
 						</div>
 					</div>
-					<a href="#" class="btn btn-primary" id="telusuri" value="submit">Telusuri</a>
 				</div>
 				<img class="hero__img" src="<?= $config->baseURL ?>public/home/assets/el.png" alt="si El" />
 			</div>
