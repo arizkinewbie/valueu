@@ -22,6 +22,23 @@ class TokenModel extends \App\Models\BaseModel
         return $data;
     }
 
+    public function addToken($data)
+    {
+        $data = [
+            'token' => $data['token'],
+            'status' => 0,
+            'expired' => $data['expired'],
+            'ctime' => date('Y-m-d H:i:s'),
+            'cuser' => $data['cuser'],
+        ];
+        try {
+            $this->db->table($this->table)->insert($data);
+        } catch (\Exception $e) {
+            return false;
+        }
+        return true;
+    }
+
     public function verifyToken($token)
     {
     }
