@@ -1,3 +1,34 @@
+$(document).ready(function () {
+  let param = new URLSearchParams(window.location.search);
+  token = param.get("token") ?? null;
+  let current_url = window.location.origin + "/home";
+  if (token) {
+    $.ajax({
+      url: current_url + '/check?token=' + token,
+      method: 'GET',
+      success: function (data) {
+        data = JSON.parse(data);
+        // sweet alert tampilkan data pada modal sweetalert
+        Swal.fire({
+          title: data.status,
+          html: `
+            <table>
+              ${Object.entries(data.data).map(([key, value]) => `
+                <tr>
+                  <th>${key}: </th>
+                  <td>${value}</td>
+                </tr>
+              `).join('')}
+            </table>
+          `,
+          icon: 'success',
+          confirmButtonText: 'Close'
+        })
+      }
+    });
+  }
+});
+
 // Accordion
 const accordionButtons = document.querySelectorAll(".accordion__button");
 

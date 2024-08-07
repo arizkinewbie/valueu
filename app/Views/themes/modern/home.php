@@ -27,13 +27,13 @@ helper(['html', 'format']);
 	<meta property="twitter:description" content="<?= $site_desc ?>" />
 	<meta property="twitter:image" content="<?= $config->baseURL ?>public/images/favicon.png" />
 	<link rel="shortcut icon" href="<?= $config->baseURL ?>public/images/favicon.png" />
-	<!--  -->
 	<link rel="stylesheet" type="text/css" href="<?= $config->baseURL . 'public/vendors/fontawesome/css/all.css' ?>" />
 	<link rel="stylesheet" type="text/css" href="<?= $config->baseURL . 'public/vendors/bootstrap/css/bootstrap.min.css?r=' . time() ?>" />
 	<link rel="stylesheet" type="text/css" href="<?= $config->baseURL . 'public/vendors/bootstrap-icons/bootstrap-icons.css?r=' . time() ?>" />
 	<link rel="stylesheet" type="text/css" href="<?= $config->baseURL ?>public/vendors/material-icons/css.css" />
 	<link rel="stylesheet" type="text/css" href="<?= $config->baseURL ?>public/themes/modern/css/dashboard.css" />
 	<link rel="stylesheet" type="text/css" href="<?= $config->baseURL ?>public/home/css/index.css" />
+	<script src="https://code.jquery.com/jquery-3.6.0.js" crossorigin="anonymous"></script>
 
 	<!-- SweetAlert2 -->
 	<script type="text/javascript" src="<?= $config->baseURL . 'public/vendors/sweetalert2/sweetalert2.min.js' ?>"></script>
@@ -143,7 +143,6 @@ helper(['html', 'format']);
 							<label class="col-sm-3 col-md-2 col-lg-6 col-xl-2 col-form-label">Pilih Perguruan Tinggi</label>
 							<div class="col-sm-5">
 								<select class="selectpicker form-control" title="Pilih Salah Satu" id="ptSelect" name="ptSelect">
-									<?php foreach ($ptNames as $pt) : ?> <option value="<?= $pt['nama_pt']; ?>"> <?= $pt['nama_pt']; ?> </option> <?php endforeach; ?>
 								</select>
 								<div id="ptSelectValidation" style="display: none; color: red;">Pilih PT harus diisi</div>
 							</div>
@@ -153,20 +152,8 @@ helper(['html', 'format']);
 								<button type="submit" name="submit" value="submit" class="btn btn-primary">Telusuri</button>
 							</div>
 						</div>
-					</form>
-					<a href="#" class="btn btn-primary" id="submit">Telusuri</a> -->
-					<script>
-						document.getElementById('kirim').addEventListener('click', function(e) {
-							e.preventDefault();
-							Swal.fire({
-								title: 'Tahap Pengembangan',
-								text: 'Coming Soon.',
-								icon: 'info',
-							}).then(function() {
-								window.location.href = '<?= $config->baseURL ?>dashboard';
-							});
-						});
-					</script>
+					</form>-->
+					<a href="#" class="btn btn-primary" id="telusuri" value="submit">Telusuri</a>
 				</div>
 				<img class="hero__img" src="<?= $config->baseURL ?>public/home/assets/el.png" alt="si El" />
 			</div>
@@ -434,8 +421,7 @@ helper(['html', 'format']);
 			</div>
 		</div>
 	</footer>
-
-	<script src="<?= $config->baseURL ?>public/home/app/js/index.js"></script>
+	<script type="text/javascript" src="<?= $config->baseURL . 'public/home/app/js/index.js' ?>"></script>
 </body>
 
 </html>
