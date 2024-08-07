@@ -33,22 +33,24 @@ class Home extends BaseController
 
 	public function check()
 	{
+		$jwt = new \App\Libraries\JWT();
 		$data = $this->data;
-		if (empty($_GET['token'])) {
-			$token = 'default';
-		} else {
+		try {
 			$token = $_GET['token'];
+			$data = $jwt->decode($token);
+			$dataToken = [
+				'status' => 200,
+				'message' => 'Data dokumen tersedia',
+				'data' => $data
+			];
+		} catch (\Exception $e) {
+			$dataToken = [
+				'status' => 500,
+				'error' => $e->getMessage(),
+				'message' => 'Terjadi kesalahan, data dokumen tidak tersedia',
+				'data' => []
+			];
 		}
-		$data['result'] = '';
-		$dataToken = [
-			'status' => 200,
-			'data' => [
-				'name' => 'token',
-				'value' => '123',
-				'token' => $token ?? '',
-				'pengaju' => '123',
-			]
-		];
 		return json_encode($dataToken);
 	}
 }

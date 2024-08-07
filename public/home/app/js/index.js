@@ -8,26 +8,97 @@ $(document).ready(function () {
       method: 'GET',
       success: function (data) {
         data = JSON.parse(data);
-        // sweet alert tampilkan data pada modal sweetalert
-        Swal.fire({
-          title: data.status,
-          html: `
-            <table>
-              ${Object.entries(data.data).map(([key, value]) => `
-                <tr>
-                  <th>${key}: </th>
-                  <td>${value}</td>
-                </tr>
-              `).join('')}
-            </table>
-          `,
-          icon: 'success',
-          confirmButtonText: 'Close'
-        })
+        if (data.status == 200) {
+          /*
+          data sbb:
+          tgl_terbit	:	07-08-2024
+          nomor	:	01/MHS/BEKASI/2024
+          hal	:	Peminjaman Kelas
+          pengaju	:	Fanny (Ketua BEMK Bekasi)
+          keterangan	:	Ruang 201
+          tgl_berlaku	:	31-08-2024
+          iss	:	Admin Kampus Bekasi
+          iat	:	1723026798
+          */
+          dataHTML = `
+          <tr>
+            <td width="700px"><b>Terbit Surat :</b></td>
+          </tr>
+          <tr>
+            <td>${data.data.tgl_terbit}</td>
+          </tr>
+          <tr>
+            <td><b>Nomor :</b></td>
+          </tr>
+          <tr>
+            <td>${data.data.nomor}</td>
+          </tr>
+          <tr>
+            <td><b>Perihal :</b></td>
+          </tr>
+          <tr>
+            <td>${data.data.hal}</td>
+          </tr>
+          <tr>
+            <td><b>Keterangan :</b></td>
+          </tr>
+          <tr>
+            <td>${data.data.keterangan}</td>
+          </tr>
+          `;
+        } else {
+          dataHTML = `<span>Terjadi kesalahan! data tidak tersedia.</span>`;
+          $('#check-content').removeClass('alert-success');
+          $('#check-content').addClass('alert-error');
+        }
+        $('#check-content').html(dataHTML).show();
+      },
+      error: function (xhr, status, error) {
+        console.log(error, xhr, status);
       }
     });
   }
 });
+
+//QRCode Reader
+document.getElementById('scanQrCodeBtn').addEventListener('click', function () {
+  var qrCodeReaderDiv = document.getElementById('qrCodeReader');
+  qrCodeReaderDiv.style.display = 'block';
+  console.log("masuk qrcode");
+
+  const html5QrCode = new Html5Qrcode("qrCodeReader");
+  const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+    console.log(`QR Code decoded: ${decodedText}`);
+
+    // Regular expression to check if the decoded text is a URL
+    const urlPattern = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+
+    if (urlPattern.test(decodedText)) {
+      // Redirect to the URL
+      window.location.href = decodedText.startsWith("http") ? decodedText : `http://${decodedText}`;
+    } else {
+      alert(`QR Code decoded: ${decodedText}`);
+    }
+
+    // Hide the QR code reader after successful scan
+    html5QrCode.stop().then(() => {
+      qrCodeReaderDiv.style.display = 'none';
+    }).catch(err => {
+      console.error('Failed to stop QR code reader:', err);
+    });
+  };
+
+  const config = { fps: 10, qrbox: 250 };
+
+  html5QrCode.start(
+    { facingMode: "environment" },
+    config,
+    qrCodeSuccessCallback
+  ).catch(err => {
+    console.error('Unable to start QR code scanner:', err);
+  });
+});
+
 
 // Accordion
 const accordionButtons = document.querySelectorAll(".accordion__button");

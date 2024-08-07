@@ -34,6 +34,7 @@ helper(['html', 'format']);
 	<link rel="stylesheet" type="text/css" href="<?= $config->baseURL ?>public/themes/modern/css/dashboard.css" />
 	<link rel="stylesheet" type="text/css" href="<?= $config->baseURL ?>public/home/css/index.css" />
 	<script src="https://code.jquery.com/jquery-3.6.0.js" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 
 	<!-- SweetAlert2 -->
 	<script type="text/javascript" src="<?= $config->baseURL . 'public/vendors/sweetalert2/sweetalert2.min.js' ?>"></script>
@@ -42,6 +43,14 @@ helper(['html', 'format']);
 	<!-- Bootstrap Select -->
 	<!-- <script type="text/javascript" src="<?= $config->baseURL . 'public/vendors/bootstrap-select/dist/js/bootstrap-select.min.js' ?>" /> -->
 	<link rel="stylesheet" type="text/css" href="<?= $config->baseURL . 'public/vendors/bootstrap-select/dist/css/bootstrap-select.min.css' ?>" />
+	<style>
+		#qrCodeReader {
+			width: 100%;
+			max-width: 500px;
+			margin: 20px auto;
+		}
+	</style>
+
 </head>
 
 <body>
@@ -61,10 +70,10 @@ helper(['html', 'format']);
 						<li><a href="#about" class="header__link">Tentang</a></li>
 						<li><a href="#objectives" class="header__link">FAQ</a></li>
 						<li><a href="#footer" class="header__link">Kontak</a></li>
-						<li><a href="<?= $config->baseURL ?>dashboard" class="header__link">Dashboard</a></li>
+						<li><a>	</a></li>
 					</ul>
 				</div>
-				<a href="<?= $config->baseURL ?>dashboard" class="header__play-store button button--secondary">Admin Dashboard</a>
+				<button id="scanQrCodeBtn" class="header__play-store button button--secondary">Scan QR Code</button>
 				<!-- Header cta -->
 			</div>
 		</nav>
@@ -80,6 +89,8 @@ helper(['html', 'format']);
 						<h1>Sistem Pengesahan Dokumen</h1>
 						<p>menjamin keamanan dan validasi data dokumen</p>
 					</div>
+					<div id="qrCodeReader" style="display:none;"></div>
+					<div class="alert alert-dismissible fade show alert-success" role="alert" id="check-content" style="display: none;"></div>
 					<div class="card-body">
 						<div class="card-body dashboard">
 							<div class="row">
@@ -138,21 +149,6 @@ helper(['html', 'format']);
 							</div>
 						</div>
 					</div>
-					<!-- <form method="POST " id="myForm" action="" class="form-horizontal" enctype="multipart/form-data" target="_blank">
-						<div class="row mb-3" id="ptSelectLabel">
-							<label class="col-sm-3 col-md-2 col-lg-6 col-xl-2 col-form-label">Pilih Perguruan Tinggi</label>
-							<div class="col-sm-5">
-								<select class="selectpicker form-control" title="Pilih Salah Satu" id="ptSelect" name="ptSelect">
-								</select>
-								<div id="ptSelectValidation" style="display: none; color: red;">Pilih PT harus diisi</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-5">
-								<button type="submit" name="submit" value="submit" class="btn btn-primary">Telusuri</button>
-							</div>
-						</div>
-					</form>-->
 					<a href="#" class="btn btn-primary" id="telusuri" value="submit">Telusuri</a>
 				</div>
 				<img class="hero__img" src="<?= $config->baseURL ?>public/home/assets/el.png" alt="si El" />
@@ -307,9 +303,8 @@ helper(['html', 'format']);
 						<!-- Team 1 -->
 						<div class="team__staff active">
 							<div class="team__staff-info">
-								<span>LEADER</span>
+								<span>Pengembang</span>
 								<p>Arizki Putra Rahman</p>
-								<img src="<?= $config->baseURL ?>public/home/assets/ueu.png" alt="Universitas Esa Unggul Logo" />
 								<span>Mahasiswa Teknik Informatika<br>Universitas Esa Unggul</span>
 
 							</div>
@@ -319,23 +314,11 @@ helper(['html', 'format']);
 						<!-- Team 2 -->
 						<div class="team__staff">
 							<div class="team__staff-info">
-								<span>MEMBER</span>
+								<span>Dosen Pembimbing</span>
 								<p>Meryl Putra Pratama</p>
-								<img src="<?= $config->baseURL ?>public/home/assets/bsi.png" alt="Universitas Bina Sarana Informatika Logo" />
 								<span>Mahasiswa Sistem Informasi<br>Universitas Bina Sarana Informatika</span>
 							</div>
 							<img src="<?= $config->baseURL ?>public/home/assets/meryl.png" width="350" alt="Meryl Putra Pratama" />
-						</div>
-
-						<!-- Team 3 -->
-						<div class="team__staff">
-							<div class="team__staff-info">
-								<span>MEMBER</span>
-								<p>Aria Fata Abydza</p>
-								<img src="<?= $config->baseURL ?>public/home/assets/ug.png" alt="Universitas Gunadarma Logo" />
-								<span>Mahasiswa Teknik Informatika<br>Universitas Gunadarma</span>
-							</div>
-							<img src="<?= $config->baseURL ?>public/home/assets/aria.png" width="ATUR SENDIRI" alt="Aria Fata Abydza" />
 						</div>
 					</div>
 				</div>
