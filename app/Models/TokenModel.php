@@ -48,10 +48,16 @@ class TokenModel extends \App\Models\BaseModel
             $status = 400;
             $msg = 'Dokumen telah diblokir. Silahkan hubungi pihak terkait';
             $data = [];
-        } else {
+        }
+        // check if token exist
+        else if ($this->db->table($this->table)->where('token', $token)->where('status', 0)->where('expired >', date('Y-m-d H:i:s'))->get()->getRowArray()) {
             $status = 200;
             $msg = 'Data dokumen tersedia';
             $data = $jwt->decode($token);
+        } else {
+            $status = 500;
+            $msg = 'Dokumen tidak ditemukan. Silahkan hubungi pihak terkait';
+            $data = [];
         }
         return $data = [
             'status' => $status,
