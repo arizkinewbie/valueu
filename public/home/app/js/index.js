@@ -7,7 +7,6 @@ $(document).ready(function () {
       url: current_url + '/check?token=' + token,
       method: 'GET',
       success: function (data) {
-        data = JSON.parse(data);
         if (data.status == 200) {
           let iatFormat = new Date(data.data.iat * 1000);
           dataHTML = `

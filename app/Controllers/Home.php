@@ -47,6 +47,6 @@ class Home extends BaseController
 				'data' => []
 			];
 		}
-		return json_encode($dataToken);
+		return $this->response->setJSON($dataToken);
 	}
 }
