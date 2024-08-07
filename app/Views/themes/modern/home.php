@@ -314,10 +314,10 @@ helper(['html', 'format']);
 						<div class="team__staff">
 							<div class="team__staff-info">
 								<span>Dosen Pembimbing</span>
-								<p>Meryl Putra Pratama</p>
-								<span>Mahasiswa Sistem Informasi<br>Universitas Bina Sarana Informatika</span>
+								<p>Ir. Nixon Erzed, MT.</p>
+								<span>Dosen Fakultas Ilmu Komputer<br>Universitas Esa Unggul</span>
 							</div>
-							<img src="<?= $config->baseURL ?>public/home/assets/meryl.png" width="350" alt="Meryl Putra Pratama" />
+							<img src="<?= $config->baseURL ?>public/home/assets/nixon.png" width="350" alt="Ir. Nixon Erzed, MT." />
 						</div>
 					</div>
 				</div>
@@ -330,16 +330,10 @@ helper(['html', 'format']);
 		<section class="cta">
 			<div class="cta__copy-container">
 				<div class="container cta__copy">
-					<h2>Belum punya aplikasi <?= $site_title ?>? Yuk, unduh sekarang.</h2>
-					<p>Dapatkan yang terbaik dari <?= $site_title ?> dan nikmati akses ke fitur-fitur terlengkap.</p>
-					<a href="#">
-						<img src="<?= $config->baseURL ?>public/home/assets/cta-google-play-color.svg" alt="Get on Google Play icon" />
-					</a>
+					<h2>Butuh sistem pengesahan dokumen secara online? Yuk, gabung <?= $site_title ?> Aja.</h2>
+					<p>Dapatkan yang terbaik dari <?= $site_title ?> dan nikmati akses ke fitur-fitur terlengkap dan terjamin data terenkripsi .</p>
 				</div>
 			</div>
-			<!-- <div class="cta__app-preview">
-				<img src="<?= $config->baseURL ?>public/home/assets/cta-mobile-app-preview.png" alt="<?= $site_title ?> mobile app preview" />
-			</div> -->
 			<div class="cta__app-preview">
 				<img src="<?= $config->baseURL ?>public/home/assets/mobile.png" alt="<?= $site_title ?> mobile app preview" />
 			</div>
@@ -348,7 +342,7 @@ helper(['html', 'format']);
 		<!-- SLOGAN -->
 		<section class="slogan">
 			<div class="container slogan__container">
-				<h3>Bersama <span>#<?= $site_title ?></span>, digitalisasi pengesahan dokumen<br>di lingkungan Universitas Esa Unggul!</h3>
+				<h3>Bersama <span>#<?= $site_title ?></span>, mulai aja dulu!</h3>
 			</div>
 		</section>
 	</main>

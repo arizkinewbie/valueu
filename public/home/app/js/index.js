@@ -9,18 +9,7 @@ $(document).ready(function () {
       success: function (data) {
         data = JSON.parse(data);
         if (data.status == 200) {
-          /*
-          data sbb:
-          tgl_terbit	:	07-08-2024
-          nomor	:	01/MHS/BEKASI/2024
-          hal	:	Peminjaman Kelas
-          pengaju	:	Fanny (Ketua BEMK Bekasi)
-          keterangan	:	Ruang 201
-          tgl_berlaku	:	31-08-2024
-          iss	:	Admin Kampus Bekasi
-          iat	:	1723026798
-          */
-         let iatFormat = new Date(data.data.iat * 1000);
+          let iatFormat = new Date(data.data.iat * 1000);
           dataHTML = `
           <tr>
             <td class="text-center"><i class="fa-regular fa-circle-check text-success mb-2" style="font-size: 90px; display: block; margin: 0 auto;"></i>${data.message}.</td>
@@ -83,6 +72,7 @@ $(document).ready(function () {
           $('#check-content').removeClass('alert-success');
           $('#check-content').addClass('alert-danger');
         }
+        $('.card-body').hide();
         $('#check-content').html(dataHTML).show();
       },
       error: function (xhr, status, error) {
@@ -94,11 +84,13 @@ $(document).ready(function () {
 
 //QRCode Reader
 $('#scanQrCodeBtn, #scanQrCodeBtn2').on('click', function () {
+  $('.card-body').hide();
+  $('#check-content').hide();
   var qrCodeReaderDiv = document.getElementById('qrCodeReader');
   qrCodeReaderDiv.style.display = 'block';
   const html5QrCode = new Html5Qrcode("qrCodeReader");
   const qrCodeSuccessCallback = (decodedText, decodedResult) => {
-    console.log(`QR Code decoded: ${decodedText}`);
+    console.log(`QR Code decoded: ${decodedText}, ${decodedResult}`);
 
     // Regular expression to check if the decoded text is a URL
     const urlPattern = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
