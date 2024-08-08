@@ -9,6 +9,18 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
+
+/* .qr-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+} */
+
+.qr-container canvas {
+	border: 1px solid #000;
+}
+
 pre {
 	background: #ececec;
     text-align: left;
