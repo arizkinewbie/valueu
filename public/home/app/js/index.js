@@ -124,7 +124,8 @@ $('#scanQrCodeBtn, #scanQrCodeBtn2').on('click', function () {
       // Redirect to the URL
       window.location.href = decodedText.startsWith("http") ? decodedText : `http://${decodedText}`;
     } else {
-      alert(`QR Code decoded: ${decodedText}`);
+      // alert(`QR Code decoded: ${decodedText}`);
+      window.location.href = decodedText;
     }
 
     // Hide the QR code reader after successful scan
