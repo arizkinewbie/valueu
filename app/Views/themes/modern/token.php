@@ -48,7 +48,7 @@
 				}
 
 				// $settings['dom'] = 'Bfrtip';
-				$settings['order'] = [4, 'asc'];
+				$settings['order'] = [4, 'desc'];
 				$settings['columnDefs'][] = ['targets' => [0], 'orderable' => false];
 					?>
 					</tbody>
