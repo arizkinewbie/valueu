@@ -1,7 +1,7 @@
 function generateQRCode($this) {
 	let token = '';
-	if (this.value) {
-		token = this.value;
+	if ($this) {
+		token = $this.getAttribute("data-value");
 	} else {
 		token = document.getElementById('jwtoken').value;
 	}

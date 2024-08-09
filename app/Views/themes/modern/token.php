@@ -15,11 +15,18 @@
 		?>
 			<a href="<?= base_url() ?>/add-document" class="btn btn-success btn-xs mb-3">Add Document</a>
 			<a href="<?= base_url() ?>/block-document" class="btn btn-warning btn-xs mb-3">Block Document</a>
+			<div class="qr-container alert alert-dismissible fade show alert-success mb-3" style="display: none;">
+				<canvas id="myCanvas" width="200" height="200"></canvas>
+				<div id="btn-container">
+					<button type="button" class="btn btn-primary" style="margin-top: 10px;" onclick="downloadQr(this)" value="<?= isset($jwtoken) ? $jwtoken : '' ?>">Download</button>
+				</div>
+			</div>
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-hover" id="data-tables-token" style="width:100%">
 					<thead>
 						<tr>
 							<th>No</th>
+							<th>No. Surat</th>
 							<th>Token</th>
 							<th>Status</th>
 							<th>Pembuat</th>
@@ -38,7 +45,8 @@
 						$expired = $val['expired'] ? format_tanggal($val['expired']) : 'Tidak ada';
 						echo '<tr>
 						<td class="text-center">' . $key . '</td>
-						<td class="text-truncate" style="max-width: 450px;" title="' . $val['token'] . '">' . $val['token'] . '</td>
+						<td class="text-truncate" style="max-width: 150px;" title="click for download QR Code this"><a href="#" onclick="generateQRCode(this)" data-value="' . $val['token'] . '">' . $val['no_surat'] . '</a></td>
+						<td class="text-truncate" style="max-width: 400px;" title="' . $val['token'] . '">' . $val['token'] . '</td>
 						<td class="text-center"> ' . $status . '</td>
 						<td>' . $val['creator'] . '</td>
 						<td>' . format_tanggal($val['ctime']) . '</td>
@@ -46,9 +54,8 @@
 					</tr>';
 					}
 				}
-
 				// $settings['dom'] = 'Bfrtip';
-				$settings['order'] = [4, 'desc'];
+				$settings['order'] = [5, 'desc'];
 				$settings['columnDefs'][] = ['targets' => [0], 'orderable' => false];
 					?>
 					</tbody>
@@ -59,5 +66,4 @@
 			?>
 	</div>
 </div>
-<script>
-</script>
+<script type="text/javascript" src="<?= $config->baseURL . 'public/themes/modern/js/qrcode.js' ?>"></script>

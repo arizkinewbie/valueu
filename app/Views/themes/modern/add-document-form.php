@@ -24,7 +24,7 @@
     <div class="qr-container alert alert-dismissible fade show alert-success mb-3" style="display: none;">
       <canvas id="myCanvas" width="200" height="200"></canvas>
       <div id="btn-container">
-        <button type="button" class="btn btn-primary" style="margin-top: 10px;" onclick="downloadQr(this)" value="<?= isset($jwtoken) ? $jwtoken : '' ?>">Download</button>
+        <button type="button" class="btn btn-primary" style="margin-top: 10px;" onclick="downloadQr()">Download</button>
       </div>
     </div>
     <form method="post" action="" id="form-container" enctype="multipart/form-data">
