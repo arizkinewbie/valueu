@@ -39,12 +39,12 @@ class TokenModel extends \App\Models\BaseModel
         $jwt = new JWT();
         //check if token expired or not
         $tglBerlaku = $this->db->table($this->table)->where('token', $token)->get()->getRowArray()['expired'];
-        $isExpired = $this->db->table($this->table)->where('token', $token)->where('expired <', date('Y-m-d H:i:s'))->get()->getRowArray();
+        $isExpired = $this->db->table($this->table)->where('token', $token)->where('expired <', date('Y-m-d '))->get()->getRowArray();
         if ( $isExpired && $tglBerlaku != '0000-00-00') {
             $status = 400;
             $msg = 'Dokumen sudah kadaluarsa. Silahkan hubungi pihak terkait';
             $data = [
-                'tgl_berlaku' => format_tanggal($this->db->table($this->table)->where('token', $token)->where('expired <', date('Y-m-d H:i:s'))->get()->getRowArray()['expired'])
+                'tgl_berlaku' => format_tanggal($this->db->table($this->table)->where('token', $token)->get()->getRowArray()['expired'])
             ];
         }
         //check if token status block

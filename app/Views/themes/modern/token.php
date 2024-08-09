@@ -31,7 +31,7 @@
 							<th>Status</th>
 							<th>Pembuat</th>
 							<th>Tanggal Pembuatan</th>
-							<th>Tanggal Berlaku</th>
+							<th>Masa Berlaku</th>
 						</tr>
 					</thead>
 					<tbody>
