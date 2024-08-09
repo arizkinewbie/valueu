@@ -46,7 +46,7 @@ helper(['html', 'format']);
 	<style>
 		#qrCodeReader {
 			width: 100%;
-			max-width: 500px;
+			max-width: 300px;
 			margin: 20px auto;
 			border: 4px solid red;
 		}

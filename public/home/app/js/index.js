@@ -108,24 +108,32 @@ $(document).ready(function () {
 });
 
 // QRCode Reader
-
 $('#scanQrCodeBtn, #scanQrCodeBtn2').on('click', async function () {
+  const qrCodeReaderVideo = document.getElementById('qrCodeReader');
   let codeReader = new ZXing.BrowserQRCodeReader();
+
+  // Sembunyikan elemen lain dan tampilkan video reader
   $('.card-body').hide();
   $('#check-content').hide();
-  var qrCodeReaderVideo = document.getElementById('qrCodeReader');
-  console.log(qrCodeReaderVideo.style.display);
-  //close qr code reader when cklick scanQRCOdeBtn again 
-  if (qrCodeReaderVideo.style.display == 'block') {
+
+  // Toggle tampilan video reader
+  if (qrCodeReaderVideo.style.display === 'block') {
     qrCodeReaderVideo.style.display = 'none';
     $('.card-body').show();
+    codeReader.reset();
     return;
   }
+
   qrCodeReaderVideo.style.display = 'block';
 
   try {
     // Mendapatkan perangkat kamera yang tersedia
-    const devices = await codeReader.getVideoInputDevices();
+    const devices = await codeReader.listVideoInputDevices();
+
+    if (devices.length === 0) {
+      alert('No video input devices found');
+      throw new Error('No video input devices found');
+    }
 
     // Memilih perangkat kamera pertama (bisa disesuaikan jika ada lebih dari satu kamera)
     const firstDeviceId = devices[0].deviceId;
@@ -149,6 +157,7 @@ $('#scanQrCodeBtn, #scanQrCodeBtn2').on('click', async function () {
         // Hentikan dan sembunyikan QR code reader setelah berhasil scan
         codeReader.reset();
         qrCodeReaderVideo.style.display = 'none';
+        $('.card-body').show();
       }
 
       if (error && !(error instanceof ZXing.NotFoundException)) {
@@ -160,9 +169,6 @@ $('#scanQrCodeBtn, #scanQrCodeBtn2').on('click', async function () {
     console.error('Unable to start QR code scanner:', err);
   }
 });
-
-
-
 
 
 // Accordion
