@@ -107,45 +107,62 @@ $(document).ready(function () {
   }
 });
 
-//QRCode Reader
-$('#scanQrCodeBtn, #scanQrCodeBtn2').on('click', function () {
+// QRCode Reader
+
+$('#scanQrCodeBtn, #scanQrCodeBtn2').on('click', async function () {
+  let codeReader = new ZXing.BrowserQRCodeReader();
   $('.card-body').hide();
   $('#check-content').hide();
-  var qrCodeReaderDiv = document.getElementById('qrCodeReader');
-  qrCodeReaderDiv.style.display = 'block';
-  const html5QrCode = new Html5Qrcode("qrCodeReader");
-  const qrCodeSuccessCallback = (decodedText, decodedResult) => {
-    console.log(`QR Code decoded: ${decodedText}, ${decodedResult}`);
+  var qrCodeReaderVideo = document.getElementById('qrCodeReader');
+  console.log(qrCodeReaderVideo.style.display);
+  //close qr code reader when cklick scanQRCOdeBtn again 
+  if (qrCodeReaderVideo.style.display == 'block') {
+    qrCodeReaderVideo.style.display = 'none';
+    $('.card-body').show();
+    return;
+  }
+  qrCodeReaderVideo.style.display = 'block';
 
-    // Regular expression to check if the decoded text is a URL
-    const urlPattern = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+  try {
+    // Mendapatkan perangkat kamera yang tersedia
+    const devices = await codeReader.getVideoInputDevices();
 
-    if (urlPattern.test(decodedText)) {
-      // Redirect to the URL
-      window.location.href = decodedText.startsWith("http") ? decodedText : `http://${decodedText}`;
-    } else {
-      // alert(`QR Code decoded: ${decodedText}`);
-      window.location.href = decodedText;
-    }
+    // Memilih perangkat kamera pertama (bisa disesuaikan jika ada lebih dari satu kamera)
+    const firstDeviceId = devices[0].deviceId;
 
-    // Hide the QR code reader after successful scan
-    html5QrCode.stop().then(() => {
-      qrCodeReaderDiv.style.display = 'none';
-    }).catch(err => {
-      console.error('Failed to stop QR code reader:', err);
+    // Mulai QR code scanner dengan kamera yang dipilih
+    codeReader.decodeFromVideoDevice(firstDeviceId, 'qrCodeReader', (result, error) => {
+      if (result) {
+        console.log(`QR Code decoded: ${result.text}`);
+
+        // Pola RegEx untuk memeriksa apakah teks yang dipindai adalah URL
+        const urlPattern = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+
+        if (urlPattern.test(result.text)) {
+          // Redirect ke URL jika yang dipindai adalah URL
+          window.location.href = result.text.startsWith("http") ? result.text : `http://${result.text}`;
+        } else {
+          // Jika bukan URL, arahkan ke teks yang dipindai
+          window.location.href = result.text;
+        }
+
+        // Hentikan dan sembunyikan QR code reader setelah berhasil scan
+        codeReader.reset();
+        qrCodeReaderVideo.style.display = 'none';
+      }
+
+      if (error && !(error instanceof ZXing.NotFoundException)) {
+        console.error('Error while scanning QR code:', error);
+      }
     });
-  };
 
-  const config = { fps: 10, qrbox: 250 };
-
-  html5QrCode.start(
-    { facingMode: "environment" },
-    config,
-    qrCodeSuccessCallback
-  ).catch(err => {
+  } catch (err) {
     console.error('Unable to start QR code scanner:', err);
-  });
+  }
 });
+
+
+
 
 
 // Accordion

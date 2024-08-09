@@ -34,7 +34,7 @@ helper(['html', 'format']);
 	<link rel="stylesheet" type="text/css" href="<?= $config->baseURL ?>public/themes/modern/css/dashboard.css" />
 	<link rel="stylesheet" type="text/css" href="<?= $config->baseURL ?>public/home/css/index.css" />
 	<script src="https://code.jquery.com/jquery-3.6.0.js" crossorigin="anonymous"></script>
-	<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.21.2/umd/index.min.js" type="text/javascript"></script>
 
 	<!-- SweetAlert2 -->
 	<script type="text/javascript" src="<?= $config->baseURL . 'public/vendors/sweetalert2/sweetalert2.min.js' ?>"></script>
@@ -48,6 +48,7 @@ helper(['html', 'format']);
 			width: 100%;
 			max-width: 500px;
 			margin: 20px auto;
+			border: 4px solid red;
 		}
 	</style>
 
@@ -90,7 +91,7 @@ helper(['html', 'format']);
 						<p>menjamin keamanan dan validasi data dokumen</p>
 					</div>
 					<a href="#" class="btn btn-primary" id="scanQrCodeBtn2">Scan QR Code</a>
-					<div id="qrCodeReader" style="display:none;"></div>
+					<video id="qrCodeReader" style="display:none;"></video>
 					<div class="alert fade show alert-success" role="alert" id="check-content" style="display: none;"></div>
 					<div class="card-body">
 						<div class="card-body dashboard">
