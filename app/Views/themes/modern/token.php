@@ -45,7 +45,7 @@
 						$expired = $val['expired'] ? format_tanggal($val['expired']) : 'Tidak ada';
 						echo '<tr>
 						<td class="text-center">' . $key . '</td>
-						<td class="text-truncate" style="max-width: 150px;" title="click for download QR Code this"><a href="#" onclick="generateQRCode(this)" data-value="' . $val['token'] . '">' . $val['no_surat'] . '</a></td>
+						<td title="click for download QR Code this"><a href="#" onclick="generateQRCode(this)" data-value="' . $val['token'] . '">' . $val['no_surat'] . '</a></td>
 						<td class="text-truncate" style="max-width: 400px;" title="' . $val['token'] . '">' . $val['token'] . '</td>
 						<td class="text-center"> ' . $status . '</td>
 						<td>' . $val['creator'] . '</td>
