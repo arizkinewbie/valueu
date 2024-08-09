@@ -47,3 +47,38 @@ function downloadQr() {
 	downloadLink.download = Date.parse(new Date()) + "-qrcode.png";
 	downloadLink.click();
 }
+
+// QRCode Reader
+$('#scanQrCodeBtn, #scanQrCodeBtn2').on('click', async function () {
+	const qrCodeReaderVideo = document.getElementById('qrCodeReader');
+	let codeReader = new ZXing.BrowserQRCodeReader();
+	if (qrCodeReaderVideo.style.display === 'block') {
+		qrCodeReaderVideo.style.display = 'none';
+		$('.card-body').show();
+		codeReader.reset();
+		return;
+	}
+	qrCodeReaderVideo.style.display = 'block';
+	try {
+		const devices = await codeReader.listVideoInputDevices();
+		if (devices.length === 0) {
+			alert('No video input devices found');
+			throw new Error('No video input devices found');
+		}
+		const firstDeviceId = devices[0].deviceId;
+		codeReader.decodeFromVideoDevice(firstDeviceId, 'qrCodeReader', (result, error) => {
+			if (result) {
+				console.log(`QR Code decoded: ${result.text}`);
+				$token = result.text.split('=')[1];
+				document.getElementById('token').value = $token;
+				codeReader.reset();
+				qrCodeReaderVideo.style.display = 'none';
+			}
+			if (error && !(error instanceof ZXing.NotFoundException)) {
+				console.error('Error while scanning QR code:', error);
+			}
+		});
+	} catch (err) {
+		console.error('Unable to start QR code scanner:', err);
+	}
+});
