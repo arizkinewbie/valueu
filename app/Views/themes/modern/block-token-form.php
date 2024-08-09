@@ -1,3 +1,11 @@
+<style>
+	#qrCodeReader {
+		width: 100%;
+		max-width: 400px;
+		margin: 7px;
+		border: 2px solid red;
+	}
+</style>
 <div class="card">
 	<div class="card-header">
 		<h5 class="card-title"><?= $current_module['judul_module'] ?></h5>
@@ -7,7 +15,6 @@
 	<div class="card-body">
 		<?php
 		helper('html');
-
 		echo btn_link([
 			'attr' => ['class' => 'btn btn-light btn-xs'],
 			'url' => $config->baseURL . '/token',
@@ -15,6 +22,7 @@
 			'label' => 'Token History',
 		]);
 		?>
+
 		<hr />
 		<?php
 		if (!empty($msg)) {
@@ -27,10 +35,16 @@
 		<form method="post" action="" class="form-horizontal" enctype="multipart/form-data">
 			<div class="tab-content" id="myTabContent">
 				<div class="row mb-3">
+					<label class="col-sm-3 col-md-2 col-lg-3 col-xl-2 col-form-label"><a href="#" class="btn btn-secondary btn-xs" id="scanQrCodeBtn" title="Click to scan QR Code">Scan QR Code</a></label>
+					<div class="col-sm-5">
+						<video id="qrCodeReader" style="display:none;"></video>
+					</div>
+				</div>
+				<div class="row mb-3">
 					<label class="col-sm-3 col-md-2 col-lg-3 col-xl-2 col-form-label">Token</label>
 					<div class="col-sm-5">
-						<input class="form-control" type="text" name="token" placeholder="Token berawal eyJhbGci......" required />
-						<small><i>Token yang telah dibuat sebelumnya</i></small>
+						<input class="form-control" type="text" name="token" id="token" placeholder="Token berawal eyJhbGci......" required />
+						<small>Token dari data dokumen yang disahkan</small>
 					</div>
 				</div>
 				<div class="row mb-3">
@@ -50,3 +64,4 @@
 		</form>
 	</div>
 </div>
+<script type="text/javascript" src="<?= $config->baseURL . 'public/themes/modern/js/qrcode.js' ?>"></script>
