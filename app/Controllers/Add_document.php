@@ -25,6 +25,7 @@ class Add_document extends \App\Controllers\BaseController
     $this->addJs($this->config->baseURL . 'public/themes/modern/js/add-document.js');
     $this->addJs($this->config->baseURL . 'public/vendors/bootstrap-datepicker/js/bootstrap-datepicker.js');
     $this->addJs($this->config->baseURL . 'public/themes/modern/js/date-picker.js');
+    $this->addJs('https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js');
     $this->addStyle($this->config->baseURL . 'public/vendors/bootstrap-datepicker/css/bootstrap-datepicker3.css');
   }
 
@@ -56,7 +57,7 @@ class Add_document extends \App\Controllers\BaseController
           'nomor' => $_POST['nomor'],
           'hal' => $_POST['hal'],
           'pengaju' => $_POST['pengaju'],
-          'tgl_berlaku' => $tglBerlaku ? format_tanggal($tglBerlaku) : null,
+          'tgl_berlaku' => $tglBerlaku ? format_tanggal($tglBerlaku) : 'selamanya',
           'keterangan' => $_POST['keterangan'],
           'iss' => $user_name,
           'iat' => time(),
@@ -64,7 +65,8 @@ class Add_document extends \App\Controllers\BaseController
         $token = $jwt->encode($dataForm);
         $dataToken = [
           'token' => $token,
-          'expired' => $dataForm['tgl_berlaku'],
+          'no_surat' => $dataForm['nomor'],
+          'expired' => $tglBerlaku,
           'status' => 0,
           'ctime' => date('Y-m-d H:i:s'),
           'cuser' => $id,
@@ -74,6 +76,7 @@ class Add_document extends \App\Controllers\BaseController
         if ($isSave) {
           $data['msg']['status'] = 'ok';
           $data['msg']['content'] = 'Data berhasil disimpan';
+          $data['jwtoken'] = $token;
         } else {
           $data['msg']['status'] = 'error';
           $data['msg']['content'] = 'Data gagal disimpan';

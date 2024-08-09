@@ -7,10 +7,6 @@
   <div class="card-body">
     <?php
     helper('html');
-    if (!empty($msg)) {
-      show_message($msg['content'], $msg['status']);
-    }
-
     echo btn_link([
       'attr' => ['class' => 'btn btn-light btn-xs'],
       'url' => $config->baseURL . 'token',
@@ -19,6 +15,18 @@
     ]);
     ?>
     <hr />
+    <?php
+    if (!empty($msg)) {
+      show_message($msg['content'], $msg['status']);
+    }
+    ?>
+    <input type="hidden" name="jwtoken" id="jwtoken" value="<?= isset($jwtoken) ? $jwtoken : '' ?>" />
+    <div class="qr-container alert alert-dismissible fade show alert-success mb-3" style="display: none;">
+      <canvas id="myCanvas" width="200" height="200"></canvas>
+      <div id="btn-container">
+        <button type="button" class="btn btn-primary" style="margin-top: 10px;" onclick="downloadQr(this)" value="<?= isset($jwtoken) ? $jwtoken : '' ?>">Download</button>
+      </div>
+    </div>
     <form method="post" action="" id="form-container" enctype="multipart/form-data">
       <div class="tab-content" id="myTabContent">
         <div class="row mb-3">
@@ -60,7 +68,7 @@
         <div class="row mb-3" id="form-tgl-berlaku" style="display: none;">
           <label class="col-sm-3 col-md-2 col-lg-3 col-xl-2 col-form-label">Pilih Tanggal <span class="text-danger">*</span></label>
           <div class="col-sm-5">
-            <input class="form-control date-picker" type="text" name="tgl_berlaku" placeholder="Menentukan batas surat dinyatakan sah" value="<?= date('d-m-Y') ?>"/>
+            <input class="form-control date-picker" type="text" name="tgl_berlaku" placeholder="Menentukan batas surat dinyatakan sah" value="<?= date('d-m-Y') ?>" disabled />
             <small>Menentukan batas surat dinyatakan sah</small>
           </div>
         </div>
@@ -94,3 +102,4 @@
     </form>
   </div>
 </div>
+<script type="text/javascript" src="<?= $config->baseURL . 'public/themes/modern/js/qrcode.js' ?>"></script>
