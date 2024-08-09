@@ -387,7 +387,7 @@ h5 {
   padding-bottom: 40px;
   display: grid;
   justify-items: start;
-  gap: 32px;
+  gap: 15px;
   max-width: 442px;
   z-index: 5;
   position: relative;
