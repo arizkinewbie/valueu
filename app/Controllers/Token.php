@@ -29,7 +29,8 @@ class Token extends \App\Controllers\BaseController
 		$this->addJs($this->config->baseURL . 'public/vendors/datatables/extensions/Buttons/js/buttons.print.min.js');
 		$this->addStyle($this->config->baseURL . 'public/vendors/datatables/extensions/Buttons/css/buttons.bootstrap5.min.css');
 		$this->addJs($this->config->baseURL . 'public/themes/modern/js/data-tables-token.js');
-		$this->addJs ( $this->config->baseURL . 'public/themes/modern/js/token.js');
+		$this->addJs($this->config->baseURL . 'public/themes/modern/js/token.js');
+		$this->addJs('https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js');
 	}
 
 	public function index()
