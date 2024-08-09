@@ -27,6 +27,7 @@ class Block_document extends \App\Controllers\BaseController
 		$this->addJs($this->config->baseURL . 'public/vendors/datatables/extensions/Buttons/js/buttons.print.min.js');
 		$this->addStyle($this->config->baseURL . 'public/vendors/datatables/extensions/Buttons/css/buttons.bootstrap5.min.css');
 		$this->addJs($this->config->baseURL . 'public/themes/modern/js/data-tables-token.js');
+		$this->addJs('https://cdn.jsdelivr.net/npm/@zxing/library@0.21.2/umd/index.min.js');
 		$this->addJs($this->config->baseURL . 'public/themes/modern/js/token.js');
 	}
 
