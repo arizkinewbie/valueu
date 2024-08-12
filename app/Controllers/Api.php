@@ -41,7 +41,11 @@ class Api extends BaseController
 			$data = [
 				'status' => 200,
 				'message' => 'Data tersedia',
-				'data' => $data
+				'data' => [
+					'all' => $data['all'],
+					'active' => $data['active'],
+					'blocked' => $data['inactive'],
+				]
 			];
 		} catch (\Exception $e) {
 			$data = [
