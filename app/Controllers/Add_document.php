@@ -37,16 +37,12 @@ class Add_document extends \App\Controllers\BaseController
     $data['msg'] = [];
     $data_options = $this->setDataOptions();
     $data = array_merge($data, $data_options);
-    //when submit
     if (isset($_POST['submit'])) {
-      // $form_errors = validate_form();
       $form_errors = false;
       if ($form_errors) {
         $data['msg']['status'] = 'error';
         $data['msg']['content'] = $form_errors;
       } else {
-        // $query = false;
-        //SAVE
         $jwt = new \App\Libraries\JWT();
         $user_name = $_SESSION['user']['nama'];
         $id = $_SESSION['user']['id_user'];
