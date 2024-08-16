@@ -40,7 +40,7 @@ class TokenModel extends \App\Models\BaseModel
         //check if token expired or not
         $tglBerlaku = $this->db->table($this->table)->where('token', $token)->get()->getRowArray()['expired'];
         $isExpired = $this->db->table($this->table)->where('token', $token)->where('expired <', date('Y-m-d '))->get()->getRowArray();
-        if ( $isExpired && $tglBerlaku != '0000-00-00') {
+        if ($isExpired && $tglBerlaku != '0000-00-00') {
             $status = 400;
             $msg = 'Dokumen sudah kadaluarsa. Silahkan hubungi pihak terkait';
             $data = [
@@ -72,14 +72,12 @@ class TokenModel extends \App\Models\BaseModel
         ];
     }
 
-    public function blockToken()
+    public function blockToken($token)
     {
-        $token = $_POST['token'];
         //check if token already status block
         if ($this->db->table($this->table)->where('token', $token)->where('status', 1)->get()->getRowArray()) {
             $result['msg']['status'] = 'warning';
             $result['msg']['content'] = 'Token sudah diblokir sebelumnya';
-            // $result['msg']['redirect'] = true;
             return $result;
         }
         //check if token nothing
@@ -95,7 +93,31 @@ class TokenModel extends \App\Models\BaseModel
         } else {
             $result['msg']['status'] = 'ok';
             $result['msg']['content'] = 'Token berhasil diblokir';
-            $result['msg']['redirect'] = true;
+        }
+        return $result;
+    }
+
+    public function unblockToken($token)
+    {
+        //check if token already status block
+        if ($this->db->table($this->table)->where('token', $token)->where('status', 0)->get()->getRowArray()) {
+            $result['msg']['status'] = 'warning';
+            $result['msg']['content'] = 'Token tidak diblokir sebelumnya';
+            return $result;
+        }
+        //check if token nothing
+        if (!$this->db->table($this->table)->where('token', $token)->where('status', 1)->get()->getRowArray()) {
+            $result['msg']['status'] = 'error';
+            $result['msg']['content'] = 'Token tidak ditemukan';
+            return $result;
+        }
+        $data = $this->db->table($this->table)->where('token', $token)->update(['status' => 0, 'dtime' => date('Y-m-d H:i:s'), 'duser' => $_SESSION['user']['id_user']]);
+        if (!$data) {
+            $result['msg']['status'] = 'error';
+            $result['msg']['content'] = 'Token gagal dibuka';
+        } else {
+            $result['msg']['status'] = 'ok';
+            $result['msg']['content'] = 'Token berhasil dibuka';
         }
         return $result;
     }

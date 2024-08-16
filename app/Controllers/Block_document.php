@@ -39,13 +39,19 @@ class Block_document extends \App\Controllers\BaseController
 		// Submit
 		$data['msg'] = [];
 		if (isset($_POST['submit'])) {
+			$type = $_POST['submit'];
 			// $form_errors = validate_form();
 			$form_errors = false;
 			if ($form_errors) {
 				$data['msg']['status'] = 'error';
 				$data['msg']['content'] = $form_errors;
 			} else {
-				$message = $this->tokenModel->blockToken();
+				$token = $_POST['token'];
+				if ($type == 'block') {
+					$message = $this->tokenModel->blockToken($token);
+				} elseif ($type == 'unblock') {
+					$message = $this->tokenModel->unblockToken($token);
+				}
 				$data = array_merge($data, $message);
 			}
 		}

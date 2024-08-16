@@ -54,9 +54,11 @@
 						<small>User yang melakukan pemblokiran token</small>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row mb-3">
+				<label class="col-sm-3 col-md-2 col-lg-3 col-xl-2 col-form-label"></label>
 					<div class="col-sm-5">
-						<button type="submit" name="submit" value="submit" class="btn btn-primary">Submit</button>
+						<button type="submit" name="submit" value="block" class="btn btn-danger">Block</button>
+						<button type="submit" name="submit" value="unblock" class="btn btn-success">Unblock</button>
 						<input type="hidden" name="id" value="<?= @$_GET['id'] ?>" />
 					</div>
 				</div>
