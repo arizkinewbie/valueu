@@ -57,4 +57,28 @@ class Api extends BaseController
 		}
 		return $this->response->setJSON($data);
 	}
+
+	public function blockToken()
+	{
+		$token = new TokenModel();
+		try {
+			$tokenData = $_GET['token'];
+			$data = $token->blockToken($tokenData);
+			$data = [
+				'status' => 200,
+				'message' => $data['msg']['content'],
+				'data' => [
+					'token' => $tokenData,
+				],
+			];
+		} catch (\Exception $e) {
+			$data = [
+				'status' => 500,
+				'error' => $e->getMessage(),
+				'message' => 'Terjadi kesalahan! silahkan coba lagi',
+				'data' => []
+			];
+		}
+		return $this->response->setJSON($data);
+	}
 }
