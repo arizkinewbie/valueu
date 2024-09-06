@@ -300,7 +300,7 @@ helper(['html', 'format']);
 						</button>
 					</div>
 					<div class="team__staffs">
-						<!-- Team 1 -->
+						<!-- Mahasiswa 	 -->
 						<div class="team__staff active">
 							<div class="team__staff-info">
 								<span>Pengembang</span>
@@ -311,7 +311,7 @@ helper(['html', 'format']);
 							<img src="<?= $config->baseURL ?>public/home/assets/arizki.png" width="430" alt="Arizki Putra Rahman" />
 						</div>
 
-						<!-- Team 2 -->
+						<!-- Dosem Pembimbing -->
 						<div class="team__staff">
 							<div class="team__staff-info">
 								<span>Dosen Pembimbing</span>
@@ -319,6 +319,26 @@ helper(['html', 'format']);
 								<span>Dosen Fakultas Ilmu Komputer<br>Universitas Esa Unggul</span>
 							</div>
 							<img src="<?= $config->baseURL ?>public/home/assets/nixon.png" width="350" alt="Ir. Nixon Erzed, MT." />
+						</div>
+
+						<!-- Ketua Penguji -->
+						<div class="team__staff">
+							<div class="team__staff-info">
+								<span>Ketua Penguji</span>
+								<p>Dr. Vitri Tundjungsari, ST., M.Sc., M.M</p>
+								<span>Dosen Fakultas Ilmu Komputer<br>Universitas Esa Unggul</span>
+							</div>
+							<img src="<?= $config->baseURL ?>public/home/assets/vitri.png" width="200" alt="Dr. Vitri Tundjungsari, ST., M.Sc., M.M" />
+						</div>
+
+						<!-- Anggota Penguji -->
+						<div class="team__staff">
+							<div class="team__staff-info">
+								<span>Anggota Penguji</span>
+								<p>Adi Widiantono, S.Kom, M.Kom</p>
+								<span>Dosen Fakultas Ilmu Komputer<br>Universitas Esa Unggul</span>
+							</div>
+							<img src="<?= $config->baseURL ?>public/home/assets/adi.png" width="200" alt="Adi Widiantono, S.Kom, M.Kom" />
 						</div>
 					</div>
 				</div>
